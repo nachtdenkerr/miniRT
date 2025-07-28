@@ -6,32 +6,45 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:10:17 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/27 19:12:20 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/07/28 10:47:55 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int main(int argc, char **argv)
+int	init_minirt(void)
 {
-	t_scene scene;
-	t_mlx mlx;
+	mlx_t				*mlx;
+	t_minirt			*mrt;
+	static mlx_image_t	*image;
+
+	mrt = malloc(sizeof(t_minirt));
+	if (!mrt)
+		return (NULL);
+	mlx = mlx_init(800, 600, "miniRT", true);
+	if (!mlx)
+		return (perror(mlx_strerror(mlx_errno)), free(mrt), NULL);
+	image = mlx_new_image(mlx, 800, 600);
+	if (!image)
+		return (mlx_close_window(mlx), mlx_terminate(mlx),
+			perror(mlx_strerror(mlx_errno)), free(mrt), NULL);
+	mrt->mlx = mlx;
+	mrt->img = image;
+	return (mrt);
+}
+
+int	main(int argc, char **argv)
+{
+	t_scene		scene;
+	t_minirt	*mrt;
 
 	if (argc != 2)
 		error_exit("Usage: ./miniRT scene.rt");
-
 	parse_scene(argv[1], &scene);
-
-	mlx.mlx_ptr = mlx_init();
-	if (!mlx.mlx_ptr)
-		error_exit("MLX init failed");
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 800, 600, "miniRT");
-
+	mrt = init_minirt();
+	if (!mrt)
+		return (EXIT_FAILURE);
+	mrt->scene = &scene;
 	// TODO: render scene here
-
-	mlx_hook(mlx.win_ptr, 17, 0, close_window, &mlx); // Red cross
-	mlx_key_hook(mlx.win_ptr, key_hook, &mlx);       // ESC key
-	mlx_loop(mlx.mlx_ptr);
-
 	return (0);
 }
