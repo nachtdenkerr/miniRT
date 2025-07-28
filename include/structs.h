@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/28 12:29:45 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/07/28 13:47:19 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_cylinder
 {
 	t_point		center;
 	t_vector	axis;
-	double		raidus;
+	double		radius;
 	double		height;
 	t_color		color;
 }				t_cylinder;
