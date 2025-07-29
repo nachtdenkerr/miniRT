@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:38:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/29 20:18:07 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/07/29 20:46:32 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,10 @@ void	invalid_color_val_exit(char *str, char **tokens,
 void	invalid_arg_exit(char **tokens, t_scene *scene, int x);
 
 //gnl_helper.c
-//size_t	ft_strlen_gnl(const char *s);
-//void	*ft_memmove_gnl(void *dst, const void *src, size_t len);
-//char	*ft_strjoin_gnl(char const *s1, char const *s2);
-//char	*ft_strchr_gnl(const char *s, int c);
-int		get_len(char *str);
-char	*get_from_buffer(char *buffer);
-int		find_ind(char *str, char c);
-char	*split_data(char *data, char *buffer);
-char	*join_str(char *data, char *other);
+size_t	ft_strlen_gnl(const char *s);
+void	*ft_memmove_gnl(void *dst, const void *src, size_t len);
+char	*ft_strjoin_gnl(char const *s1, char const *s2);
+char	*ft_strchr_gnl(const char *s, int c);
 
 //gnl.c
 char	*get_next_line(int fd);
