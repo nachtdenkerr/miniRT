@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 18:09:39 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/29 20:23:03 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/07/30 12:46:07 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	parse_camera(char **tokens, t_scene *scene)
 	if (check_if_normal(c.orientation))
 		invalid_arg_exit(tokens, scene, 10);
 	c.fov = ft_atof(tokens[3], &flag, 1, 0);
-	if (flag ||c.fov < 0.0 || c.fov > 180.0)
+	if (flag || c.fov < 0.0 || c.fov > 180.0)
 		invalid_arg_exit(tokens, scene, 11);
 	scene->camera = c;
 }

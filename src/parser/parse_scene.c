@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/29 20:28:28 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/07/30 12:45:45 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@ void	count_elements(char *line, t_scene *scene)
 	char	**tokens;
 
 	tokens = ft_split(line, ' ');
-	if (!tokens)
-	{
-		free(line);
-		malloc_failure_exit();
-	}
 	free(line);
+	if (!tokens)
+		malloc_failure_exit();
 	if (!ft_strcmp(tokens[0], "A"))
 		scene->ambiant_count++;
 	else if (!ft_strcmp(tokens[0], "C"))
@@ -48,8 +45,6 @@ void	get_element_counts(t_scene *scene, char *filename)
 	char	*line;
 	char	*tmp;
 
-	line = NULL;
-	tmp = NULL;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		file_open_error_exit(filename);
@@ -107,8 +102,6 @@ void	parse_elements(t_scene *scene, char *filename)
 	char	*line;
 	char	*tmp;
 
-	line = NULL;
-	tmp = NULL;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		file_open_error_exit(filename);

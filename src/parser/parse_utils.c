@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:47 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/29 19:50:17 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/07/30 12:47:13 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,9 @@ double	ft_atof(char *str, int *flag, int sign, int i)
 		result = result * 10 + (str[i++] - '0');
 	if (str[i] == '.')
 	{
-		i++;
-		while (str[i] >= '0' && str[i] <= '9')
+		while (str[++i] >= '0' && str[i] <= '9')
 		{
-			result += (str[i++] - '0') * frac;
+			result += (str[i] - '0') * frac;
 			frac *= 0.1;
 		}
 	}
