@@ -13,4 +13,27 @@ so the fov given is only for the fov Horizontal to get the vertical fov we have 
 after we have that we gonna calculate the orientation vector of the right and top.
 then we gonna calculate the vector of every pixel/ray depending on there position between X and T as well as X and R;
 after that we gonna calculate if that ray hits an object if it does we gonna save the distance it needed to hit that object and check the next object at the end we check which object was hit the fastes and gonna color the pixel in that way.
-thats all i got dk if thats correct but will see
+
+So for each pixel we:
+
+                                                                                                -Shoot a ray from the camera.
+
+                                                                                        -Find the closest object intersection (if any).
+
+         If there’s a hit:                                                                                                                             -If no hit:
+                                                                                                                                                      → Color the pixel with the default color (black).
+        At the intersection point:
+
+              -Get the object’s color (base color).
+
+        Compute the final color using lighting:
+
+              -Add ambient component.
+
+              -Add diffuse component (for all lights not blocked by shadows).
+
+              -(Later: add specular, reflection, etc. for bonus.)
+
+      Set the pixel’s color to this final result.
+
+so for shadows iim thinking that we gonna check before we add defuse lightning if there is an object between the light and the point if there is we not gonna add defuse lightning if there isnt we gonna do it.
