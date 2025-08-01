@@ -1,0 +1,16 @@
+just a doc where im gonna write down my thoughts about how to implement the project so we are not doing thinks in different directions without realising it call me out if some of my thought are wrong just gonna write down what i think:
+
+alright so we have a camera which is pointing in a certain direction on a 3dimensional coordinate grid that camera basically shoots out rays depending on how many for example 9:5 pixel (the dimensions of the example are naturally wrong but just to visualise)
+
+                                                                                  top middle ray has an angle of verticalfov/2 to the orientation og the camera
+                                                                                                      o o o o T o o o o
+                                                                                                      o o o o o o o o o
+                                                                                                     -R o o o X o o o R  the right ray has a angle of fov/2 to the orientation of the camera
+                                                                                                      o o o o o o o o o
+                                                                                                      o o o o-T o o o o
+                                                                                  X = has the exact ray orientatiom vector of the camera orientation vector
+so the fov given is only for the fov Horizontal to get the vertical fov we have to calculate it using our aspect ratio of our image in our case 9:5
+after we have that we gonna calculate the orientation vector of the right and top.
+then we gonna calculate the vector of every pixel/ray depending on there position between X and T as well as X and R;
+after that we gonna calculate if that ray hits an object if it does we gonna save the distance it needed to hit that object and check the next object at the end we check which object was hit the fastes and gonna color the pixel in that way.
+thats all i got dk if thats correct but will see
