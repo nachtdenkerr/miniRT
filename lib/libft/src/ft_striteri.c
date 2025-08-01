@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_exit.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/27 20:36:24 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/29 19:29:59 by jmutschl         ###   ########.fr       */
+/*   Created: 2025/03/13 15:16:27 by jmutschl          #+#    #+#             */
+/*   Updated: 2025/03/13 15:48:53 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
-// Print error and exit. !!!needs to be to stderr
-void	error_exit(const char *msg)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	printf("Error\n%s\n", msg);
-	exit(EXIT_FAILURE);
-}
+	unsigned int	index;
 
-void	malloc_failure_exit(void)
-{
-	ft_putstr_fd("Failed Malloc\n", 2);
-	exit (1);
+	index = 0;
+	while (s[index] != '\0')
+	{
+		(*f)(index, &s[index]);
+		index++;
+	}
 }

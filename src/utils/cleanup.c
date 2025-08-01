@@ -1,26 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_exit.c                                       :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/27 20:36:24 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/29 19:29:59 by jmutschl         ###   ########.fr       */
+/*   Created: 2025/07/29 13:54:44 by jmutschl          #+#    #+#             */
+/*   Updated: 2025/07/29 19:20:14 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-// Print error and exit. !!!needs to be to stderr
-void	error_exit(const char *msg)
+void	free_arr(char **arr)
 {
-	printf("Error\n%s\n", msg);
-	exit(EXIT_FAILURE);
+	int	i;
+
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
 
-void	malloc_failure_exit(void)
+void	cleanup_scene(t_scene *scene)
 {
-	ft_putstr_fd("Failed Malloc\n", 2);
-	exit (1);
+	if (scene->lights)
+		free(scene->lights);
+	if (scene->spheres)
+		free(scene->spheres);
+	if (scene->planes)
+		free(scene->planes);
+	if (scene->cylinders)
+		free(scene->cylinders);
+	if (scene->cones)
+		free(scene->cones);
 }

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/27 19:10:33 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/28 11:49:10 by thudinh          ###   ########.fr       */
+/*   Created: 2025/07/29 19:09:24 by jmutschl          #+#    #+#             */
+/*   Updated: 2025/07/29 19:29:45 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef UTILS_H
+# define UTILS_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
 # include "structs.h"
 
-void	parse_scene(const char *filename, t_scene *scene);
-void	error_exit(const char *msg);
+//cleanup.c
+void	cleanup_scene(t_scene *scene);
+void	free_arr(char **arr);
 
+//error_exit
+void	malloc_failure_exit(void);
 #endif

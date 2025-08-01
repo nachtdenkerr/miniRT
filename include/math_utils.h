@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:37:08 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/28 12:22:06 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/07/29 16:47:44 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATH_UTILS_H
 # define MATH_UTILS_H
-# include <math.h>
+
 # include "structs.h"
 
 double		vec_dot(t_vector a, t_vector b);
