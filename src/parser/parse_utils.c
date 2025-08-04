@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:47 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/30 12:47:13 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:31:14 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_empty_or_comment(const char *line)
 	return (0);
 }
 
-int	check_if_normal(t_vector vec)
+int	check_if_unit_vector(t_vector vec)
 {
 	double	len;
 
@@ -41,11 +41,11 @@ void	validate_element_counts(t_scene *scene)
 	if (scene->ambiant_count == 0)
 		missing_element_exit(1);
 	else if (scene->ambiant_count > 1)
-		to_much_elements(1);
+		error_too_many_elements(1);
 	if (scene->camera_count == 0)
 		missing_element_exit(2);
 	else if (scene->camera_count > 1)
-		to_much_elements(2);
+		error_too_many_elements(2);
 	if (scene->light_count == 0)
 		missing_element_exit(3);
 	if (scene->sphere_count == 0 && scene->plane_count

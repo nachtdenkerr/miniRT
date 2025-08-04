@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 18:09:39 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/30 12:46:07 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:31:14 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	parse_camera(char **tokens, t_scene *scene)
 		invalid_argc_exit(tokens, NULL, scene, 8);
 	c.position = parse_vector(tokens[1], tokens, scene);
 	c.orientation = parse_vector(tokens[2], tokens, scene);
-	if (check_if_normal(c.orientation))
+	if (check_if_unit_vector(c.orientation))
 		invalid_arg_exit(tokens, scene, 10);
 	c.fov = ft_atof(tokens[3], &flag, 1, 0);
 	if (flag || c.fov < 0.0 || c.fov > 180.0)
