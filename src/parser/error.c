@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 12:06:56 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/29 20:03:46 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:29:22 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	unknown_identifier_exit(char **tokens)
 	exit(1);
 }
 
-void	to_much_elements(int x)
+void	error_too_many_elements(int x)
 {
 	if (x == 1)
 		ft_putstr_fd("Multiple ambient lighting declarations\n", 2);

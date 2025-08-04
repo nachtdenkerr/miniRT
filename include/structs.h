@@ -6,13 +6,14 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/29 19:21:07 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:26:30 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include "MLX42.h"
 # include "../lib/libft/include/libft.h"
 # include "../lib/libft/include/ft_printf.h"
 # include <stdio.h>
@@ -37,6 +38,7 @@ typedef struct s_ray
 {
 	t_point		origin;
 	t_vector	dir;
+	t_point		hit_point;
 }				t_ray;
 
 typedef struct s_color
@@ -120,5 +122,12 @@ typedef struct s_scene
 	int			cone_count;
 	int			co_index;
 }				t_scene;
+
+typedef struct s_minirt
+{
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	t_scene		*scene;
+}				t_minirt;
 
 #endif
