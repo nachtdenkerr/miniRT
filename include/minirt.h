@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_exit.c                                       :+:      :+:    :+:   */
+/*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/27 20:36:24 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/29 19:29:59 by jmutschl         ###   ########.fr       */
+/*   Created: 2025/07/27 19:10:33 by thudinh           #+#    #+#             */
+/*   Updated: 2025/07/29 19:09:10 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#ifndef MINIRT_H
+# define MINIRT_H
 
-// Print error and exit. !!!needs to be to stderr
-void	error_exit(const char *msg)
-{
-	printf("Error\n%s\n", msg);
-	exit(EXIT_FAILURE);
-}
+# include "structs.h"
+# include "parser.h"
+# include "utils.h"
 
-void	malloc_failure_exit(void)
-{
-	ft_putstr_fd("Failed Malloc\n", 2);
-	exit (1);
-}
+#endif

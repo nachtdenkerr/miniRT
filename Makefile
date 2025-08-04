@@ -1,0 +1,79 @@
+NAME := miniRT
+
+LIB_DIR 	:=	lib
+BONUS_DIR	:=	src/bonus
+MLX_DIR		:=	src/mlx
+PARS_DIR	:=	src/parser
+RENDER_DIR	:=	src/render
+UTILS_DIR	:=	src/utils
+OBJ_DIR 	:=	obj
+
+CC 		:=	cc 
+CFLAGS	:= -Wall -Wextra -Werror
+LDFLAGS = -lm
+
+LIBFT_DIR	:= $(LIB_DIR)/libft
+LIBFT_A		:= $(LIBFT_DIR)/libft.a
+
+LIBS	:= $(LIBFT_A)
+IFLAGS	:= -Iinclude -I$(LIBFT_DIR)/include 
+
+SRCS	:= 	\
+			src/main.c\
+			$(PARS_DIR)/error.c\
+			$(PARS_DIR)/error_two.c\
+			$(PARS_DIR)/gnl_helper.c\
+			$(PARS_DIR)/gnl.c\
+			$(PARS_DIR)/init.c\
+			$(PARS_DIR)/parse_elements.c\
+			$(PARS_DIR)/parse_elements_two.c\
+			$(PARS_DIR)/parse_scene.c\
+			$(PARS_DIR)/parse_utils.c\
+			$(UTILS_DIR)/cleanup.c\
+			$(UTILS_DIR)/error_exit.c\
+
+OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
+
+# Reset
+NC=\033[0m
+
+# Regular Colors
+Black :=\033[0;30m
+Red :=\033[0;31m
+Green :=\033[0;32m
+Yellow :=\033[0;33m
+Blue= :=\033[0;34m
+Purple =\033[0;35m
+Cyan :=\033[0;36m
+White :=\033[0;37m
+
+all: $(NAME)
+
+$(LIBFT_A):
+	@make -C $(LIBFT_DIR) > /dev/null
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+
+$(NAME): $(LIBFT_A) $(PRINTF_A) $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME) $(LDFLAGS)
+	@echo "${Green}miniRT ${Black}Build successful!"
+
+clean:
+	@make -C $(LIBFT_DIR) clean > /dev/null
+	@rm -rf $(OBJ_DIR)
+	@echo "${Green}CLEAN ${Black}successful!"
+
+fclean:
+	@make -C $(LIBFT_DIR) fclean > /dev/null
+	@rm -rf $(OBJ_DIR)
+	@rm -f $(NAME)
+	@echo "${Green}FCLEAN ${Black}successful!"
+
+re: fclean all
+
+.PHONY: all clean fclean re

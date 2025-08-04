@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/28 14:23:48 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/07/30 12:44:18 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ double	hit_cylinder(t_cylinder cyl, t_ray ray)
 
 double	hit_cone(t_cone cone, t_ray ray)
 {
-	
+	return (1);
 }

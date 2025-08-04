@@ -3,17 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/28 13:47:19 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/07/29 19:21:07 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-# include "MLX42.h"
 
+# include "../lib/libft/include/libft.h"
+# include "../lib/libft/include/ft_printf.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <math.h>
+
+# ifndef EPSILON
+#  define EPSILON 1e-6
+# endif
 // Both POINT and VECTOR have 3 components x,y,z
 // The struct can have 2 aliases t_vector and t_point
 typedef struct s_vector
@@ -38,7 +48,7 @@ typedef struct s_color
 
 typedef struct s_ambient
 {
-	double	ratio; // [0.0, 1.0]
+	double	brightness; // [0.0, 1.0]
 	t_color	color;
 }				t_ambient;
 
@@ -91,28 +101,24 @@ typedef struct s_cone
 typedef struct s_scene
 {
 	t_ambient	ambient;
+	int			ambiant_count;
 	t_camera	camera;
+	int			camera_count;
 	t_light		*lights; // support multiple lights for bonus
 	int			light_count;
-
+	int			l_index;
 	t_sphere	*spheres;
 	int			sphere_count;
-
+	int			sp_index;
 	t_plane		*planes;
 	int			plane_count;
-
+	int			pl_index;
 	t_cylinder	*cylinders;
 	int			cylinder_count;
-
+	int			cy_index;
 	t_cone		*cones; // bonus
 	int			cone_count;
+	int			co_index;
 }				t_scene;
-
-typedef struct s_minirt
-{
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_scene		*scene;
-}				t_minirt;
 
 #endif
