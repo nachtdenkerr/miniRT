@@ -15,8 +15,11 @@ LDFLAGS = -lm
 LIBFT_DIR	:= $(LIB_DIR)/libft
 LIBFT_A		:= $(LIBFT_DIR)/libft.a
 
-LIBS	:= $(LIBFT_A)
-IFLAGS	:= -Iinclude -I$(LIBFT_DIR)/include 
+MLX42_DIR 	:= $(LIB_DIR)/MLX42
+MLX42_A 	:= $(MLX42_DIR)/build/libmlx42.a
+
+LIBS	:= $(LIBFT_A) $(MLX42_A) -ldl -lglfw -lpthread -lm
+IFLAGS	:= -Iinclude -I$(LIBFT_DIR)/include -I$(MLX42_DIR)/include/MLX42
 
 SRCS	:= 	\
 			src/main.c\
@@ -52,6 +55,10 @@ all: $(NAME)
 $(LIBFT_A):
 	@make -C $(LIBFT_DIR) > /dev/null
 
+$(MLX42_A):
+	@cmake $(MLX42_DIR) -B $(MLX42_DIR)/build > /dev/null
+	@cmake --build $(MLX42_DIR)/build -j4 > /dev/null
+
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
@@ -59,17 +66,19 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
-$(NAME): $(LIBFT_A) $(PRINTF_A) $(OBJS)
+$(NAME): $(LIBFT_A) $(MLX42_A) $(PRINTF_A) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME) $(LDFLAGS)
 	@echo "${Green}miniRT ${Black}Build successful!"
 
 clean:
 	@make -C $(LIBFT_DIR) clean > /dev/null
 	@rm -rf $(OBJ_DIR)
+	@rm -rf	$(MLX42_DIR)/build
 	@echo "${Green}CLEAN ${Black}successful!"
 
 fclean:
 	@make -C $(LIBFT_DIR) fclean > /dev/null
+	@rm -rf	$(MLX42_DIR)/build
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
 	@echo "${Green}FCLEAN ${Black}successful!"

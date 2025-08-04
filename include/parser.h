@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:38:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/30 12:43:42 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:31:14 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 //error.c
 void		file_open_error_exit(char *filename);
 void		unknown_identifier_exit(char **tokens);
-void		to_much_elements(int x);
+void		error_too_many_elements(int x);
 void		missing_element_exit(int x);
 void		free_and_failed_malloc(char **tokens, t_scene *scene);
 
@@ -67,7 +67,7 @@ void		parse_scene(char *filename, t_scene *scene);
 
 //parse_utils
 int			is_empty_or_comment(const char *line);
-int			check_if_normal(t_vector vec);
+int			check_if_unit_vector(t_vector vec);
 void		validate_element_counts(t_scene *scene);
 int			ft_atoi_color(char *str, int *flag);
 double		ft_atof(char *str, int *flag, int sign, int i);
