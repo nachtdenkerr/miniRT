@@ -6,11 +6,11 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:10:17 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 15:01:39 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 16:16:28 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../include/minirt.h"
 
 void	fill_image_with_color(mlx_image_t *img)
 {
@@ -101,16 +101,16 @@ int	main(int argc, char **argv)
 	mrt = init_minirt(&scene);
 	if (!mrt)
 		return (cleanup_scene(&scene), EXIT_FAILURE);
-	// minirt(mrt);
+	minirt(mrt);
 	mlx_image_to_window(mrt->mlx, mrt->img, 0, 0);
 	fill_image_with_color(mrt->img);
 	mlx_loop(mrt->mlx);
 	return (0);
 }
 
-// void print_vector(const char *name, t_vector v) {
-//    printf("%s: (%.6f, %.6f, %.6f)\n", name, v.x, v.y, v.z);
-//}
+void print_vector(const char *name, t_vector v) {
+   printf("%s: (%.6f, %.6f, %.6f)\n", name, v.x, v.y, v.z);
+}
 
 // void print_color(const char *name, t_color c) {
 //    printf("%s: (%d, %d, %d)\n", name, c.r, c.g, c.b);

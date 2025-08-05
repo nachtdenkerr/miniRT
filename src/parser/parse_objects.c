@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:42 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/05 10:44:05 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 16:09:05 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	parse_plane(char **tokens, t_scene *scene)
 	obj.hit = &hit_plane_wrapper;
 	scene->objects[scene->obj_index] = obj;
 	scene->obj_index++;
-
 	// scene->planes[scene->pl_index] = pl;
 	// scene->pl_index++;
 }

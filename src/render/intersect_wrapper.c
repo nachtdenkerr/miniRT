@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:40:20 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 11:56:12 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 15:55:31 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	hit_cone_wrapper(void *data, t_ray *ray, t_hit_record *rec)
 
 bool	hit_object(t_ray *ray, t_scene *scene, t_hit_record *rec)
 {
-	t_hit_record	*tmp_rec;
+	t_hit_record	tmp_rec;
 	double			closest_t;
 	bool			hit;
 	t_object		*obj;
@@ -46,12 +46,12 @@ bool	hit_object(t_ray *ray, t_scene *scene, t_hit_record *rec)
 	while (i < scene->obj_capacity)
 	{
 		obj = &scene->objects[i];
-		if (obj->hit(obj->data, ray, tmp_rec))
+		if (obj->hit(obj->data, ray, &tmp_rec))
 		{
-			if (tmp_rec->t > EPSILON && tmp_rec->t < closest_t)
+			if (tmp_rec.t > 0 && tmp_rec.t < closest_t)
 			{
-				closest_t = tmp_rec->t;
-				rec = tmp_rec;
+				closest_t = tmp_rec.t;
+				rec = &tmp_rec;
 				hit = true;
 			}
 		}

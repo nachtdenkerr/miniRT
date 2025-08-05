@@ -9,7 +9,7 @@ UTILS_DIR	:=	src/utils
 OBJ_DIR 	:=	obj
 
 CC 		:=	cc 
-CFLAGS	:= -Wall -Wextra -Werror
+CFLAGS	:= -Wall -Wextra -Werror #-fsanitize=address
 LDFLAGS = -lm
 
 LIBFT_DIR	:= $(LIB_DIR)/libft
@@ -35,14 +35,13 @@ SRCS	:= 	\
 			$(RENDER_DIR)/intersect_wrapper.c\
 			$(RENDER_DIR)/intersection.c\
 			$(RENDER_DIR)/lighting.c\
-			$(RENDER_DIR)/raytracer.c\
+			$(RENDER_DIR)/init_ray.c\
+			$(RENDER_DIR)/minirt.c\
 			$(UTILS_DIR)/cleanup.c\
 			$(UTILS_DIR)/vector_utils.c\
 			$(UTILS_DIR)/vector_math_utils.c\
 			$(UTILS_DIR)/error_exit.c\
 			$(UTILS_DIR)/color_utils.c\
-			$(UTILS_DIR)/vector_math_utils.c\
-			$(UTILS_DIR)/vector_utils.c\
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 

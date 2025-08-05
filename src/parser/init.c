@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:55:54 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/05 10:55:22 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 15:23:24 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 void	reset_index(t_scene *scene)
 {
 	scene->l_index = 0;
-	scene->sp_index = 0;
-	scene->pl_index = 0;
-	scene->cy_index = 0;
-	scene->co_index = 0;
+	// scene->sp_index = 0;
+	// scene->pl_index = 0;
+	// scene->cy_index = 0;
+	// scene->co_index = 0;
+	scene->obj_index = 0;
 }
 
 void	init_element_counts(t_scene *scene)
@@ -26,15 +27,15 @@ void	init_element_counts(t_scene *scene)
 	scene->ambiant_count = 0;
 	scene->camera_count = 0;
 	scene->light_count = 0;
-	scene->sphere_count = 0;
-	scene->plane_count = 0;
-	scene->cylinder_count = 0;
-	scene->cone_count = 0;
+	// scene->sphere_count = 0;
+	// scene->plane_count = 0;
+	// scene->cylinder_count = 0;
+	// scene->cone_count = 0;
 	scene->l_index = 0;
-	scene->sp_index = 0;
-	scene->pl_index = 0;
-	scene->cy_index = 0;
-	scene->co_index = 0;
+	// scene->sp_index = 0;
+	// scene->pl_index = 0;
+	// scene->cy_index = 0;
+	// scene->co_index = 0;
 	scene->obj_index = 0;
 	scene->obj_capacity = 0;
 }
