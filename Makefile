@@ -33,7 +33,12 @@ SRCS	:= 	\
 			$(PARS_DIR)/parse_scene.c\
 			$(PARS_DIR)/parse_utils.c\
 			$(UTILS_DIR)/cleanup.c\
+			$(UTILS_DIR)/vector_utils.c\
+			$(UTILS_DIR)/vector_math_utils.c\
 			$(UTILS_DIR)/error_exit.c\
+			$(RENDER_DIR)/minirt.c\
+			$(RENDER_DIR)/init_ray.c\
+
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 

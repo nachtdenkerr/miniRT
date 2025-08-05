@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/04 15:26:30 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:25:32 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <unistd.h>
 # include <math.h>
 
+# define WIDTH 800
+# define HEIGHT 600
 # ifndef EPSILON
 #  define EPSILON 1e-6
 # endif
@@ -39,6 +41,7 @@ typedef struct s_ray
 	t_point		origin;
 	t_vector	dir;
 	t_point		hit_point;
+	int			hit_found;
 }				t_ray;
 
 typedef struct s_color
