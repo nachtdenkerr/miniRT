@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 10:21:13 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 11:55:19 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_ray
 {
 	t_point		origin;
 	t_vector	dir;
-	t_point		hit_point;
+	// t_point		hit_point;
 }				t_ray;
 
 typedef struct s_color
@@ -124,18 +124,18 @@ typedef struct s_scene
 	t_light		*lights; // support multiple lights for bonus
 	int			light_count;
 	int			l_index;
-	t_sphere	*spheres;
-	int			sphere_count;
-	int			sp_index;
-	t_plane		*planes;
-	int			plane_count;
-	int			pl_index;
-	t_cylinder	*cylinders;
-	int			cylinder_count;
-	int			cy_index;
-	t_cone		*cones; // bonus
-	int			cone_count;
-	int			co_index;
+	// t_sphere	*spheres;
+	// int			sphere_count;
+	// int			sp_index;
+	// t_plane		*planes;
+	// int			plane_count;
+	// int			pl_index;
+	// t_cylinder	*cylinders;
+	// int			cylinder_count;
+	// int			cy_index;
+	// t_cone		*cones; // bonus
+	// int			cone_count;
+	// int			co_index;
 	t_object	*objects;
 	int			obj_index;
 	int			obj_capacity;
@@ -143,8 +143,9 @@ typedef struct s_scene
 
 typedef struct s_hit_record
 {
-	t_obj_type	type;
-	void		*object; // pointer to the actual object hit
+	t_color		color; // pointer to the actual object hit
+	t_vector	normal;
+	t_point		point;
 	double		t;
 }	t_hit_record;
 

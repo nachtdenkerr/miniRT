@@ -6,39 +6,39 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:40:20 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 10:42:31 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 11:56:12 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-bool	hit_plane_wrapper(void *data, t_ray *ray, double *t)
+bool	hit_plane_wrapper(void *data, t_ray *ray, t_hit_record *rec)
 {
-	return (hit_plane(((t_plane *)data), ray, t));
+	return (hit_plane(((t_plane *)data), ray, rec));
 }
 
-bool	hit_sphere_wrapper(void *data, t_ray *ray, double *t)
+bool	hit_sphere_wrapper(void *data, t_ray *ray, t_hit_record *rec)
 {
-	return (hit_sphere(((t_sphere *)data), ray, t));
+	return (hit_sphere(((t_sphere *)data), ray, rec));
 }
 
-bool	hit_cylinder_wrapper(void *data, t_ray *ray, double *t)
+bool	hit_cylinder_wrapper(void *data, t_ray *ray, t_hit_record *rec)
 {
-	return (hit_cylinder(((t_cylinder *)data), ray, t));
+	return (hit_cylinder(((t_cylinder *)data), ray, rec));
 }
 
-bool	hit_cone_wrapper(void *data, t_ray *ray, double *t)
+bool	hit_cone_wrapper(void *data, t_ray *ray, t_hit_record *rec)
 {
-	return (hit_cone(((t_cone *)data), ray, t));
+	return (hit_cone(((t_cone *)data), ray, rec));
 }
 
-bool	hit_object(t_ray *ray, t_scene *scene, double *t, t_object **hit_obj)
+bool	hit_object(t_ray *ray, t_scene *scene, t_hit_record *rec)
 {
-	double		t_tmp;
-	double		closest_t;
-	bool		hit;
-	t_object	*obj;
-	int			i;
+	t_hit_record	*tmp_rec;
+	double			closest_t;
+	bool			hit;
+	t_object		*obj;
+	int				i;
 
 	hit = false;
 	i = 0;
@@ -46,18 +46,16 @@ bool	hit_object(t_ray *ray, t_scene *scene, double *t, t_object **hit_obj)
 	while (i < scene->obj_capacity)
 	{
 		obj = &scene->objects[i];
-		if (obj->hit(obj->data, ray, &t_tmp))
+		if (obj->hit(obj->data, ray, tmp_rec))
 		{
-			if (t_tmp > EPSILON && t_tmp < closest_t)
+			if (tmp_rec->t > EPSILON && tmp_rec->t < closest_t)
 			{
-				closest_t = t_tmp;
-				*hit_obj = obj;
+				closest_t = tmp_rec->t;
+				rec = tmp_rec;
 				hit = true;
 			}
 		}
 		i++;
 	}
-	if (hit == true)
-		*t = closest_t;
-	return (false);
+	return (hit);
 }

@@ -6,14 +6,14 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 10:45:54 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 11:57:11 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
 // calculate if rays can hit the sphere
-bool	hit_sphere(t_sphere *sphere, t_ray *ray, double *t)
+bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec)
 {
 	double		a;
 	double		h;
@@ -28,18 +28,22 @@ bool	hit_sphere(t_sphere *sphere, t_ray *ray, double *t)
 	discriminant = h * h - a * c;
 	if (discriminant < 0)
 		return (false);
-	*t = (h - sqrt(discriminant)) / a;
-	if (*t < 0)
+	rec->t = (h - sqrt(discriminant)) / a;
+	if (rec->t < 0)
 	{
-		*t = (h + sqrt(discriminant)) / a;
-		if (*t < 0)
+		rec->t = (h + sqrt(discriminant)) / a;
+		if (rec->t < 0)
 			return (false);
 	}
+	rec->point = point_at(ray, rec->t);
+	rec->normal = vec_scale(vec_init(sphere->center, rec->point),
+			1 / sphere->radius);
+	rec->color = sphere->color;
 	return (true);
 }
 
 // not yet finished
-bool	hit_plane(t_plane *plane, t_ray *ray, double *t)
+bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec)
 {
 	double		denominator;
 	t_vector	oc;
@@ -48,7 +52,7 @@ bool	hit_plane(t_plane *plane, t_ray *ray, double *t)
 	denominator = vec_dot(ray->dir, plane->normal);
 	if (denominator == 0)
 	{
-		*t = 0.0;
+		rec->t = 0.0;
 		return (true);
 	}
 	else if (denominator < 0)
@@ -56,12 +60,13 @@ bool	hit_plane(t_plane *plane, t_ray *ray, double *t)
 		plane->normal = vec_scale(plane->normal, -1.0);
 		denominator = vec_dot(ray->dir, plane->normal);
 	}
-	*t = -vec_dot(oc, plane->normal) / denominator;
+	rec->t = -vec_dot(oc, plane->normal) / denominator;
+	rec->color = plane->color;
 	return (true);
 }
 
 // not yet finished
-bool	hit_cylinder(t_cylinder *cyl, t_ray *ray, double *t)
+bool	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_hit_record *rec)
 {
 	double		a;
 	double		h;
@@ -77,26 +82,18 @@ bool	hit_cylinder(t_cylinder *cyl, t_ray *ray, double *t)
 	discriminant = h * h - a * c;
 	if (discriminant < 0)
 		return (false);
-	*t = (h - sqrt(discriminant)) / a;
-	if (*t < 0)
+	rec->t = (h - sqrt(discriminant)) / a;
+	if (rec->t < 0)
 	{
-		*t = (h + sqrt(discriminant)) / a;
-		if (*t < 0)
+		rec->t = (h + sqrt(discriminant)) / a;
+		if (rec->t < 0)
 			return (false);
 	}
-	ray->hit_point = vec_scale(ray->dir, *t);
-	ray->hit_point = vec_add(ray->origin, ray->hit_point);
-	if (ray->hit_point.x < cyl->center.x - cyl->radius
-		|| ray->hit_point.x > cyl->center.x + cyl->radius
-		|| ray->hit_point.y < cyl->center.y - cyl->radius
-		|| ray->hit_point.y > cyl->center.y + cyl->radius
-		|| ray->hit_point.z < cyl->center.z
-		|| ray->hit_point.z > cyl->center.z + cyl->height)
-		return (false);
+	rec->color = cyl->color;
 	return (true);
 }
 
-bool	hit_cone(t_cone *cone, t_ray *ray, double *t)
+bool	hit_cone(t_cone *cone, t_ray *ray, t_hit_record *rec)
 {
 	double		a;
 	double		h;
@@ -115,6 +112,7 @@ bool	hit_cone(t_cone *cone, t_ray *ray, double *t)
 	discriminant = h * h - a * c;
 	if (discriminant < 0)
 		return (false);
-	*t = (h - sqrt(discriminant)) / a;
+	rec->t = (h - sqrt(discriminant)) / a;
+	rec->color = cone->color;
 	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/04 16:37:43 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 11:57:20 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 void	init_ray(t_ray *ray, t_scene *scene, int x, int y)
 {
 	ray->dir = calc_ray_vector(x, y);
-	ray->origin = scene->camera->position;
+	ray->origin = scene->camera.position;
 	ray->hit_point = NULL;
 }
 
 t_color	calculate_color(t_ray *ray, t_scene *scene)
 {
-	t_color	color;
+	t_color			color;
+	t_hit_record	rec;
 
-	color = object_hit(ray, scene); //set ray->hit_point here
+	if (hit_object(ray, scene, &rec))
+		color = rec.color;
 	color = ambient_lighting(color, scene);
 	color = diffuse_lighting(color, ray, scene);
 	color = specular_lighting(color, ray, scene);

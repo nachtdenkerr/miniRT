@@ -29,11 +29,18 @@ SRCS	:= 	\
 			$(PARS_DIR)/gnl.c\
 			$(PARS_DIR)/init.c\
 			$(PARS_DIR)/parse_elements.c\
-			$(PARS_DIR)/parse_elements_two.c\
+			$(PARS_DIR)/parse_objects.c\
 			$(PARS_DIR)/parse_scene.c\
 			$(PARS_DIR)/parse_utils.c\
+			$(RENDER_DIR)/intersect_wrapper.c\
+			$(RENDER_DIR)/intersection.c\
+			$(RENDER_DIR)/lighting.c\
+			$(RENDER_DIR)/raytracer.c\
 			$(UTILS_DIR)/cleanup.c\
 			$(UTILS_DIR)/error_exit.c\
+			$(UTILS_DIR)/color_utils.c\
+			$(UTILS_DIR)/vector_math_utils.c\
+			$(UTILS_DIR)/vector_utils.c\
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
