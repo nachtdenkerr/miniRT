@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:10:17 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/04 15:27:14 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:18:27 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int argc, char **argv)
 	mrt = init_minirt(&scene);
 	if (!mrt)
 		return (cleanup_scene(&scene), EXIT_FAILURE);
-	//minirt(mrt);
+	minirt(mrt);
     mlx_image_to_window(mrt->mlx, mrt->img, 0, 0);
 	fill_image_with_color(mrt->img);
 	mlx_loop(mrt->mlx);
