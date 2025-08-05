@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/05 16:33:29 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 16:53:01 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_color	calculate_color(t_ray *ray, t_scene *scene)
 	if (hit_object(ray, scene, &rec) == true)
 	{
 		color = rec.color;
+		return (rec.color);
 	}
 	// color = ambient_lighting(color, scene);
 	// color = diffuse_lighting(color, ray, scene);
@@ -45,11 +46,12 @@ void	minirt(t_minirt *mrt)
 		while (x < 800)
 		{
 			init_ray(&ray, mrt->scene, x, y);
-			// color_tmp = calculate_color(&ray, mrt->scene);
-			// color = combine_color(color_tmp);
+			color_tmp = calculate_color(&ray, mrt->scene);
+			color = combine_color(color_tmp);
 			// mlx_put_pixel(mrt->img, x, y, color);
+			x++;
 		}
-		x++;
+		y++;
 	}
-	y++;
+	printf("color has over flow\n");
 }

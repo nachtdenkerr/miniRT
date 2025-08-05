@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 16:42:23 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 16:49:30 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef enum e_obj_type
 
 typedef struct s_hit_record
 {
-	t_color		color; // pointer to the actual object hit
+	t_color		color;
 	t_vector	normal;
 	t_point		point;
 	double		t;

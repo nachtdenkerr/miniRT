@@ -9,7 +9,7 @@ UTILS_DIR	:=	src/utils
 OBJ_DIR 	:=	obj
 
 CC 		:=	cc 
-CFLAGS	:= -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS	:= -Wall -Wextra -Werror -fsanitize=address
 LDFLAGS = -lm
 
 LIBFT_DIR	:= $(LIB_DIR)/libft
