@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 11:55:19 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 15:02:59 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <unistd.h>
 # include <math.h>
 
+# define WIDTH 800
+# define HEIGHT 600
 # ifndef EPSILON
 #  define EPSILON 1e-6
 # endif

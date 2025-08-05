@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 11:57:11 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 13:03:28 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ bool	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_hit_record *rec)
 		if (rec->t < 0)
 			return (false);
 	}
+	if (rec)
 	rec->color = cyl->color;
 	return (true);
 }

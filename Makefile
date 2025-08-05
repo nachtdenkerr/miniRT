@@ -37,6 +37,8 @@ SRCS	:= 	\
 			$(RENDER_DIR)/lighting.c\
 			$(RENDER_DIR)/raytracer.c\
 			$(UTILS_DIR)/cleanup.c\
+			$(UTILS_DIR)/vector_utils.c\
+			$(UTILS_DIR)/vector_math_utils.c\
 			$(UTILS_DIR)/error_exit.c\
 			$(UTILS_DIR)/color_utils.c\
 			$(UTILS_DIR)/vector_math_utils.c\
