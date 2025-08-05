@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:47 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/04 15:31:14 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/05 10:54:41 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void	validate_element_counts(t_scene *scene)
 		error_too_many_elements(2);
 	if (scene->light_count == 0)
 		missing_element_exit(3);
-	if (scene->sphere_count == 0 && scene->plane_count
-		&& scene->cylinder_count == 0 && scene->cone_count == 0)
+	if (scene->obj_capacity == 0)
 		missing_element_exit(4);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_math_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 14:22:25 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/28 14:22:29 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 10:48:23 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ t_vector	vec_scale(t_vector v, double s)
 {
 	t_vector	u;
 
-	u.x *= s;
-	u.y *= s;
-	u.z *= s;
+	u.x = v.x * s;
+	u.y = v.y * s;
+	u.z = v.z * s;
 	return (u);
 }
 

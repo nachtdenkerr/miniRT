@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 18:09:39 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/04 15:31:14 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/05 09:41:21 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,23 @@ void	parse_ambient(char **tokens, t_scene *scene)
 		invalid_arg_exit(tokens, scene, 9);
 	a.color = parse_color(tokens[2], tokens, scene);
 	scene->ambient = a;
+}
+
+void	parse_light(char **tokens, t_scene *scene)
+{
+	t_light	l;
+	int		flag;
+
+	flag = 0;
+	if (!tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
+		invalid_argc_exit(tokens, NULL, scene, 6);
+	l.position = parse_vector(tokens[1], tokens, scene);
+	l.brightness = ft_atof(tokens[2], &flag, 1, 0);
+	if (flag || l.brightness < 0.0 || l.brightness > 1.0)
+		invalid_arg_exit(tokens, scene, 8);
+	l.color = parse_color(tokens[3], tokens, scene);
+	scene->lights[scene->l_index] = l;
+	scene->l_index++;
 }
 
 void	parse_camera(char **tokens, t_scene *scene)

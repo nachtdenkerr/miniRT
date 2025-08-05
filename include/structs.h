@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/04 17:03:46 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 10:21:13 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,21 @@ typedef struct s_light
 	t_color		color;
 }				t_light;
 
+typedef enum e_obj_type
+{
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	CONE
+}	t_obj_type;
+
+typedef struct s_object
+{
+	t_obj_type	type;
+	void		*data;
+	bool		(*hit)(void *, t_ray *, double *);
+}	t_object;
+
 typedef struct s_sphere
 {
 	t_point		center;
@@ -121,21 +136,10 @@ typedef struct s_scene
 	t_cone		*cones; // bonus
 	int			cone_count;
 	int			co_index;
+	t_object	*objects;
+	int			obj_index;
+	int			obj_capacity;
 }				t_scene;
-
-typedef enum e_obj_type
-{
-	SPHERE,
-	PLANE,
-	CYLINDER,
-	CONE
-}	t_obj_type;
-
-typedef struct s_object
-{
-	t_obj_type	type;
-	void		*data;
-}	t_object;
 
 typedef struct s_hit_record
 {

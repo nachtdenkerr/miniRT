@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:54:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/29 19:20:14 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/05 10:57:17 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	cleanup_scene(t_scene *scene)
 {
 	if (scene->lights)
 		free(scene->lights);
-	if (scene->spheres)
-		free(scene->spheres);
-	if (scene->planes)
-		free(scene->planes);
-	if (scene->cylinders)
-		free(scene->cylinders);
-	if (scene->cones)
-		free(scene->cones);
+	if (scene->objects)
+		free(scene->objects);
+	// if (scene->planes)
+	// 	free(scene->planes);
+	// if (scene->cylinders)
+	// 	free(scene->cylinders);
+	// if (scene->cones)
+	// 	free(scene->cones);
 }

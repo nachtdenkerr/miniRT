@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:34:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/04 16:20:53 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 10:48:38 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_vector	vec_reflect(t_vector v, t_vector n)
 	t_vector	w;
 
 	w = vec_sub(v, vec_scale(n, 2.0 * vec_dot(v, n)));
+	return (w);
 }
 
 double	deg_to_rad(double angle)
