@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/04 15:26:30 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/04 17:03:46 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
+# include <curses.h>
 # include "MLX42.h"
 # include "../lib/libft/include/libft.h"
 # include "../lib/libft/include/ft_printf.h"
@@ -122,6 +122,27 @@ typedef struct s_scene
 	int			cone_count;
 	int			co_index;
 }				t_scene;
+
+typedef enum e_obj_type
+{
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	CONE
+}	t_obj_type;
+
+typedef struct s_object
+{
+	t_obj_type	type;
+	void		*data;
+}	t_object;
+
+typedef struct s_hit_record
+{
+	t_obj_type	type;
+	void		*object; // pointer to the actual object hit
+	double		t;
+}	t_hit_record;
 
 typedef struct s_minirt
 {

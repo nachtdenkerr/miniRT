@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:10:17 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/04 15:27:14 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:32:37 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,6 @@ int	main(int argc, char **argv)
 
 //    printf("===================================\n");
 //}
-
 
 //int		main(int argc, char **argv)
 //{

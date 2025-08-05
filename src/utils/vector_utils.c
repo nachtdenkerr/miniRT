@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:34:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/28 14:22:39 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/04 16:20:53 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,9 @@ t_vector	vec_reflect(t_vector v, t_vector n)
 	t_vector	w;
 
 	w = vec_sub(v, vec_scale(n, 2.0 * vec_dot(v, n)));
+}
+
+double	deg_to_rad(double angle)
+{
+	return (angle * M_PI / 180.0);
 }
