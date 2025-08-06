@@ -42,6 +42,17 @@ void print_light(t_light l)
     print_color(l.color);
 }
 
+void print_cone(void *data)
+{
+    t_cone *c = (t_cone *)data;
+    if (!c) return;
+    print_vector("    Apex", c->apex);
+    print_vector("    Axis", c->axis);
+    printf("    Angle: %.2f\n", c->angle);
+    print_color(c->color);
+}
+
+
 void print_object(t_object *obj)
 {
     if (!obj) return;
@@ -58,6 +69,10 @@ void print_object(t_object *obj)
         case CYLINDER:
             printf("Cylinder\n");
             print_cylinder(obj->data);
+            break;
+        case CONE:
+            printf("Cone\n");
+            print_cone(obj->data);
             break;
         default:
             printf("Unknown type\n");

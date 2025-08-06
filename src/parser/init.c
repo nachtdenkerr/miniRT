@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:55:54 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/06 11:33:43 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:19:20 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	reset_index(t_scene *scene)
 {
 	scene->l_index = 0;
-	scene->obj_index--;
 }
 
 void	init_element_counts(t_scene *scene)

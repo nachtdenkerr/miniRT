@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:38:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/04 15:31:14 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:43:11 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void		init_element_arrays(t_scene *scene);
 void		parse_light(char **tokens, t_scene *scene);
 void		parse_sphere(char **tokens, t_scene *scene);
 void		parse_plane(char **tokens, t_scene *scene);
-void		parse_cylinder(char **tokens, t_scene *scene);
+void		parse_cylinder(char **tokens, t_scene *scene, int flag);
 void		parse_cone(char **tokens, t_scene *scene);
 
 //parse_elements.c

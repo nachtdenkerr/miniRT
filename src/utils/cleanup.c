@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:54:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/06 11:41:37 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:19:33 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	cleanup_scene(t_scene *scene)
 	i = 0;
 	if (scene->lights)
 		free(scene->lights);
-	while (i <= scene->obj_index)
+	while (i < scene->obj_index)
 	{
 		free((scene->objects[i]).data);
 		i++;

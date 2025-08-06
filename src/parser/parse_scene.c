@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/05 10:54:46 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 14:42:39 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	parse_element(char *line, t_scene *scene)
 	else if (!ft_strcmp(tokens[0], "pl"))
 		parse_plane(tokens, scene);
 	else if (!ft_strcmp(tokens[0], "cy"))
-		parse_cylinder(tokens, scene);
+		parse_cylinder(tokens, scene, 0);
 	else if (!ft_strcmp(tokens[0], "co"))
 		parse_cone(tokens, scene);
 	free_arr(tokens);
