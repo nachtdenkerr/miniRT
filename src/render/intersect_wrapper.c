@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_wrapper.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:40:20 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 15:55:31 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 12:41:18 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ bool	hit_object(t_ray *ray, t_scene *scene, t_hit_record *rec)
 			if (tmp_rec.t > 0 && tmp_rec.t < closest_t)
 			{
 				closest_t = tmp_rec.t;
-				rec = &tmp_rec;
+				*rec = tmp_rec;
 				hit = true;
 			}
 		}

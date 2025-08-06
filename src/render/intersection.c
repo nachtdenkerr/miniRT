@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/06 12:31:57 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 16:08:25 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec)
 	double		discriminant;
 	t_vector	oc;
 
-	oc = vec_sub(sphere->center, ray->origin);
+	oc = vec_sub(ray->origin, sphere->center);
 	a = vec_dot(ray->dir, ray->dir);
 	h = (vec_dot(ray->dir, oc));
 	c = vec_dot(oc, oc) - sphere->radius * sphere->radius;
 	discriminant = h * h - a * c;
 	if (discriminant < 0.0)
 		return (false);
-	rec->t = (h - sqrt(discriminant)) / a;
+	rec->t = (-h - sqrt(discriminant)) / a;
 	if (rec->t < EPSILON)
 	{
-		rec->t = (h + sqrt(discriminant)) / a;
+		rec->t = (-h + sqrt(discriminant)) / a;
 		if (rec->t < EPSILON)
 			return (false);
 	}
