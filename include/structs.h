@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 16:49:30 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 10:56:21 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,6 @@ typedef struct s_hit_record
 	double		t;
 }	t_hit_record;
 
-typedef struct s_object
-{
-	t_obj_type	type;
-	void		*data;
-	bool		(*hit)(void *, t_ray *, t_hit_record *);
-}	t_object;
-
 typedef struct s_sphere
 {
 	t_point		center;
@@ -123,6 +116,13 @@ typedef struct s_cone
 	double		angle;
 	t_color		color;
 }				t_cone;
+
+typedef struct s_object
+{
+	t_obj_type	type;
+	void		*data;
+	bool		(*hit)(void *, t_ray *, t_hit_record *);
+}	t_object;
 
 typedef struct s_scene
 {

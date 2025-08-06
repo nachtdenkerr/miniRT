@@ -9,7 +9,7 @@ UTILS_DIR	:=	src/utils
 OBJ_DIR 	:=	obj
 
 CC 		:=	cc 
-CFLAGS	:= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS	:= -Wall -Wextra -Werror
 LDFLAGS = -lm
 
 LIBFT_DIR	:= $(LIB_DIR)/libft
@@ -23,6 +23,7 @@ IFLAGS	:= -Iinclude -I$(LIBFT_DIR)/include -I$(MLX42_DIR)/include/MLX42
 
 SRCS	:= 	\
 			src/main.c\
+			src/print.c\
 			$(PARS_DIR)/error.c\
 			$(PARS_DIR)/error_two.c\
 			$(PARS_DIR)/gnl_helper.c\
