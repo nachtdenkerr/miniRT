@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:34:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 15:38:41 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 12:32:01 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,6 @@ t_point	point_at(t_ray *ray, double t)
 	point.y = ray->origin.y + ray->dir.y * t;
 	point.z = ray->origin.z + ray->dir.z * t;
 	return (point);
-}
-
-t_vector	vec_init(t_point start, t_point end)
-{
-	t_vector	v;
-
-	v.x = end.x - start.x;
-	v.y = end.y - start.y;
-	v.z = end.z - start.z;
-	return (v);
 }
 
 double	deg_to_rad(double angle)
