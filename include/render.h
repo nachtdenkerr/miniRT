@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/06 17:46:49 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 19:53:26 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	init_ray(t_ray *ray, t_scene *scene, int i, int j);
 
 t_color	specular_lighting(t_color color, t_ray *ray,
 			t_light *light, t_hit_record *rec);
-
+t_color	diffuse_lighting(t_color color, t_light *light, t_hit_record *rec);
+		
 void	minirt(t_minirt *mrt);
 
 #endif

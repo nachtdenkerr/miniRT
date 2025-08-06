@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/06 16:08:25 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 20:20:59 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,13 @@ bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec)
 bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec)
 {
 	double		denominator;
-	t_vector	oc;
 	t_vector	normal;
 
 	normal = plane->normal;
-	oc = vec_sub(plane->point, ray->origin);
 	denominator = vec_dot(ray->dir, normal);
 	if (fabs(denominator) < EPSILON)
-	{
-		rec->t = 0.0;
 		return (false);
-	}
-	if (denominator < 0)
-	{
-		normal = vec_scale(normal, -1.0);
-		denominator = vec_dot(ray->dir, normal);
-	}
-	rec->t = -vec_dot(oc, normal) / denominator;
+	rec->t = vec_dot(vec_sub(plane->point, ray->origin), normal) / denominator;
 	if (rec->t < EPSILON)
 		return (false);
 	rec->normal = normal;

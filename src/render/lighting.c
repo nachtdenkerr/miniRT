@@ -6,11 +6,23 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 17:17:25 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/06 17:54:20 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 19:54:53 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+
+t_color	diffuse_lighting(t_color color, t_light *light, t_hit_record *rec)
+{
+	t_vector	light_dir;
+	double		intensity;
+	t_color		diffuse_color;
+
+	light_dir = vec_normalize(vec_sub(light->position, rec->point));
+	intensity = fmax(vec_dot(rec->normal, light_dir), 0.0);
+	diffuse_color = color_scale(color, intensity * light->brightness);
+	return (color_add(color, diffuse_color));
+}
 
 t_color	specular_lighting(t_color color, t_ray *ray,
 		t_light *light, t_hit_record *rec)

@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/06 17:59:39 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 19:53:54 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ t_color	calculate_color(t_ray *ray, t_scene *scene)
 	color.g = 0;
 	color.b = 0;
 	light_index = 0;
-	color = color_scale(color, scene->ambient.brightness);
 	while (light_index < scene->light_count)
 	{
 		light = &scene->lights[light_index];
 		if (hit_object(ray, scene, &rec) == true)
 		{
-			color = rec.color;
-			// color = diffuse_lighting(color, ray, light, &rec);
+			color = color_scale(rec.color, scene->ambient.brightness);
+			color = diffuse_lighting(color, light, &rec);
 			color = specular_lighting(color, ray, light, &rec);
 		}
 		light_index++;
