@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:54:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/05 10:57:17 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 11:41:37 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,16 @@ void	free_arr(char **arr)
 
 void	cleanup_scene(t_scene *scene)
 {
+	int i;
+
+	i = 0;
 	if (scene->lights)
 		free(scene->lights);
+	while (i <= scene->obj_index)
+	{
+		free((scene->objects[i]).data);
+		i++;
+	}
 	if (scene->objects)
 		free(scene->objects);
 	// if (scene->planes)

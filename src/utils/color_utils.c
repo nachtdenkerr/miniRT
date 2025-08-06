@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:36:22 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 15:22:35 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/05 18:15:51 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_color	color_scale(t_color c, double s)
 	c_scaled.b = (int)round(c.b * s);
 	c_scaled.g = (int)round(c.g * s);
 	c_scaled.r = (int)round(c.r * s);
-	return (c);
+	return (c_scaled);
 }
 
 // Clamp RGB channels to [0,255].
