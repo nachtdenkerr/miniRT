@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/05 16:53:01 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 10:27:51 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	minirt(t_minirt *mrt)
 	int			y;
 	t_ray		ray;
 	t_color		color_tmp;
-	u_int32_t	color;
+	uint32_t	color;
 
 	y = 0;
 	while (y < 600)
@@ -48,10 +48,10 @@ void	minirt(t_minirt *mrt)
 			init_ray(&ray, mrt->scene, x, y);
 			color_tmp = calculate_color(&ray, mrt->scene);
 			color = combine_color(color_tmp);
-			// mlx_put_pixel(mrt->img, x, y, color);
+			mlx_put_pixel(mrt->img, x, y, color);
 			x++;
 		}
 		y++;
 	}
-	printf("color has over flow\n");
+	//printf("color has over flow\n");
 }
