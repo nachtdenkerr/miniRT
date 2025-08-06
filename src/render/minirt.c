@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/06 16:41:57 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/06 17:59:39 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,26 @@ t_color	calculate_color(t_ray *ray, t_scene *scene)
 {
 	t_color			color;
 	t_hit_record	rec;
+	t_light			*light;
+	int				light_index;
 
 	color.r = 0;
 	color.g = 0;
 	color.b = 0;
-	if (hit_object(ray, scene, &rec) == true)
+	light_index = 0;
+	color = color_scale(color, scene->ambient.brightness);
+	while (light_index < scene->light_count)
 	{
-		color = rec.color;
-		return (rec.color);
+		light = &scene->lights[light_index];
+		if (hit_object(ray, scene, &rec) == true)
+		{
+			color = rec.color;
+			// color = diffuse_lighting(color, ray, light, &rec);
+			color = specular_lighting(color, ray, light, &rec);
+		}
+		light_index++;
 	}
-	// color = ambient_lighting(color, scene);
-	// color = diffuse_lighting(color, ray, scene);
-	// color = specular_lighting(color, ray, scene);
-	return (color);
+	return (color_clamp(color));
 }
 
 void	minirt(t_minirt *mrt)
