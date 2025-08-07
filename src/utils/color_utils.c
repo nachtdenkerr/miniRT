@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:36:22 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 18:15:51 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:38:57 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "structs.h"
+
+t_color	create_color(int r, int g, int b)
+{
+	t_color	c;
+
+	c.r = r;
+	c.g = g;
+	c.b = b;
+	return (c);
+}
 
 // Add two RGB colors.
 t_color	color_add(t_color color_a, t_color color_b)

@@ -33,6 +33,7 @@ SRCS	:= 	\
 			$(PARS_DIR)/parse_objects.c\
 			$(PARS_DIR)/parse_scene.c\
 			$(PARS_DIR)/parse_utils.c\
+			$(RENDER_DIR)/checker_board.c\
 			$(RENDER_DIR)/intersection.c\
 			$(RENDER_DIR)/intersection_cylinder.c\
 			$(RENDER_DIR)/intersection_wrapper.c\

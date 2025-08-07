@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 19:09:24 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/07 10:53:16 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/07 13:45:37 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void		malloc_failure_obj_creation_exit(t_scene *scene);
 void		error_exit(const char *msg);
 
 //color
+t_color		create_color(int r, int g, int b);
 t_color		color_clamp(t_color c);
 t_color		color_scale(t_color c, double s);
 t_color		color_mult(t_color a, t_color b);

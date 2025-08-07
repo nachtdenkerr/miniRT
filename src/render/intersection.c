@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 11:33:24 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/07 13:49:06 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec)
 {
 	double		denominator;
 	t_vector	normal;
+	t_point		point;
+	t_color		color;
+	t_texture	checker;
 
 	normal = plane->normal;
 	denominator = vec_dot(ray->dir, normal);
@@ -55,7 +58,12 @@ bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec)
 	rec->t = vec_dot(vec_sub(plane->point, ray->origin), normal) / denominator;
 	if (rec->t < EPSILON)
 		return (false);
-	update_hit_record(rec, point_at(ray, rec->t), normal, plane->color);
+	point = point_at(ray, rec->t);
+	checker.scale = 3;
+	checker.color1 = create_color(255, 255, 255);
+	checker.color2 = create_color(0, 100, 0);
+	color = checker_texture(checker, point);
+	update_hit_record(rec, point, normal, color);
 	return (true);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/06 10:56:21 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:36:36 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,13 @@ typedef struct s_object
 	void		*data;
 	bool		(*hit)(void *, t_ray *, t_hit_record *);
 }	t_object;
+
+typedef struct s_texture
+{
+	double	scale;
+	t_color	color1;
+	t_color	color2;
+}	t_texture;
 
 typedef struct s_scene
 {
