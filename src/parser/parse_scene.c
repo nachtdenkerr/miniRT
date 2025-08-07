@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/06 14:42:39 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/07 14:40:35 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	count_elements(char *line, t_scene *scene)
 		scene->ambiant_count++;
 	else if (!ft_strcmp(tokens[0], "C"))
 		scene->camera_count++;
-	else if (!ft_strcmp(tokens[0], "L"))
+	else if (!ft_strcmp(tokens[0], "l"))
 		scene->light_count++;
 	else if (!ft_strcmp(tokens[0], "sp"))
 		scene->obj_capacity++;
@@ -83,7 +83,7 @@ void	parse_element(char *line, t_scene *scene)
 		parse_ambient(tokens, scene);
 	else if (!ft_strcmp(tokens[0], "C"))
 		parse_camera(tokens, scene);
-	else if (!ft_strcmp(tokens[0], "L"))
+	else if (!ft_strcmp(tokens[0], "l"))
 		parse_light(tokens, scene);
 	else if (!ft_strcmp(tokens[0], "sp"))
 		parse_sphere(tokens, scene);

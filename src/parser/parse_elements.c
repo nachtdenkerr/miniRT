@@ -3,15 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 18:09:39 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/05 09:41:21 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/07 14:51:15 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+int	is_not_valid_format(char *str)
+{
+	int i;
+	int	count;
+
+	if (!str)
+		return (1);
+	i = 0;
+	count = 0;
+	while(str[i] != '\0')
+	{
+		if (str[i] ==',')
+			count++;
+		i++;
+	}
+	if (count == 2)
+		return (0);
+	return (1);
+}
 t_vector	parse_vector(char *str, char **tokens, t_scene *scene)
 {
 	t_vector	vec;
@@ -19,6 +38,8 @@ t_vector	parse_vector(char *str, char **tokens, t_scene *scene)
 	int			flag;
 
 	flag = 0;
+	if (is_not_valid_format(str))
+		not_valid_format_exit(tokens, scene, 0);
 	arr = ft_split(str, ',');
 	if (!arr)
 		free_and_failed_malloc(tokens, scene);
@@ -44,6 +65,8 @@ t_color	parse_color(char *str, char **tokens, t_scene *scene)
 	int			flag;
 
 	flag = 0;
+	if (is_not_valid_format(str))
+		not_valid_format_exit(tokens, scene, 1);
 	arr = ft_split(str, ',');
 	if (!arr)
 		free_and_failed_malloc(tokens, scene);
