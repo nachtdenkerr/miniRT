@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 10:52:01 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/07 11:33:24 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec)
 		if (rec->t < EPSILON)
 			return (false);
 	}
-	// update_hit_record(rec, point_at(ray, rec->t),
-	// 		vec_normalize(vec_sub(rec->point, sphere->center)), sphere->color);
 	rec->point = point_at(ray, rec->t);
-	rec->normal = vec_normalize(vec_sub(rec->point, sphere->center));
-	rec->color = sphere->color;
+	update_hit_record(rec, point_at(ray, rec->t),
+		vec_normalize(vec_sub(rec->point, sphere->center)),
+		sphere->color);
 	return (true);
 }
 
@@ -57,5 +56,29 @@ bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec)
 	if (rec->t < EPSILON)
 		return (false);
 	update_hit_record(rec, point_at(ray, rec->t), normal, plane->color);
+	return (true);
+}
+
+bool	hit_cone(t_cone *cone, t_ray *ray, t_hit_record *rec)
+{
+	double		a;
+	double		h;
+	double		c;
+	double		k_sqr;
+	double		discriminant;
+	t_vector	oc;
+
+	oc = vec_sub(cone->apex, ray->origin);
+	k_sqr = tan(deg_to_rad(cone->angle)) * tan(deg_to_rad(cone->angle));
+	a = vec_dot(ray->dir, ray->dir)
+		- (1 + k_sqr) * pow(vec_dot(ray->dir, cone->axis), 2);
+	h = vec_dot(ray->dir, oc) - (1 + k_sqr) * vec_dot(ray->dir, cone->axis)
+		* vec_dot(oc, cone->axis);
+	c = vec_dot(oc, oc) - (1 + k_sqr) * pow(vec_dot(oc, cone->axis), 2);
+	discriminant = h * h - a * c;
+	if (discriminant < 0)
+		return (false);
+	rec->t = (h - sqrt(discriminant)) / a;
+	rec->color = cone->color;
 	return (true);
 }
