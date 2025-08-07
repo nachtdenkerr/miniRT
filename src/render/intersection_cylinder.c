@@ -3,87 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   intersection_cylinder.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:52:46 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/06 16:51:29 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/07 11:19:45 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	update_hit_record(t_hit_record *rec, t_point point, t_vector normal,
-		double t, t_color color)
-{
-	rec->point = point;
-	rec->normal = normal;
-	rec->t = t;
-	rec->color = color;
-}
-
-double	*solve_t_values(t_cylinder *cyl, t_ray *ray)
-{
-	double		a;
-	double		h;
-	double		discriminant;
-	t_vector	oc;
-	double		*result;
-
-	oc = vec_sub(ray->origin, cyl->center);
-	a = vec_dot(ray->dir, ray->dir) - pow(vec_dot(ray->dir, cyl->axis), 2);
-	h = vec_dot(ray->dir, oc)
-		- vec_dot(ray->dir, cyl->axis) * vec_dot(oc, cyl->axis);
-	discriminant = h * h - a * (vec_dot(oc, oc) - pow(vec_dot(oc, cyl->axis), 2)
-			- pow(cyl->radius, 2));
-	if (discriminant < 0.0)
-		return (NULL);
-	result = malloc(2 * sizeof(double));
-	if (!result)
-		return (NULL);
-	result[0] = (-h - sqrt(discriminant)) / a;
-	result[1] = (-h + sqrt(discriminant)) / a;
-	return (result);
-}
-
-bool	hit_cyl_body(t_cylinder *cyl, t_ray *ray, t_hit_record *rec, double *closest_t)
+bool	hit_cyl_body(t_cylinder *cyl, t_ray *ray, t_hit_record *rec)
 {
 	double		*t_values;
 	int			i;
-	t_point		point;
-	double		axis_projection;
 
 	t_values = solve_t_values(cyl, ray);
 	if (!t_values)
 		return (false);
-	i = 0;
-	while (i < 2)
+	i = -1;
+	while (++i < 2)
 	{
-		if (t_values[i] < EPSILON || t_values[i] > *closest_t)
-		{
-			i++;
+		if (t_values[i] < EPSILON)
 			continue ;
-		}
-		if (t_values[i] < *closest_t)
-		{
-			point = point_at(ray, t_values[i]);
-			axis_projection = vec_dot(vec_sub(point, cyl->center), cyl->axis);
-			if (fabs(axis_projection) > cyl->height / 2)
-			{
-				i++;
-				continue ;
-			}
-			update_hit_record(rec, point, vec_normalize(vec_sub(
-				vec_sub(point, cyl->center), vec_scale(cyl->axis, axis_projection))),
-				t_values[i], cyl->color);
-			return (*closest_t = rec->t, free(t_values), true);
-		}
-		i++;
+		if (check_t_value(cyl, ray, rec, t_values[i]) == false)
+			continue ;
+		free(t_values);
+		return (true);
 	}
-	return (free(t_values), false);
+	free(t_values);
+	return (false);
 }
 
-bool	hit_cylinder_topcap(t_cylinder *cyl, t_ray *ray, t_hit_record *rec,
-			double *closest_t)
+bool	hit_cylinder_topcap(t_cylinder *cyl, t_ray *ray, t_hit_record *rec)
 {
 	double		t;
 	t_vector	axis;
@@ -97,18 +48,18 @@ bool	hit_cylinder_topcap(t_cylinder *cyl, t_ray *ray, t_hit_record *rec,
 	if (fabs(denominator) < EPSILON)
 		return (false);
 	t = vec_dot(vec_sub(cap_center, ray->origin), axis) / denominator;
-	if (t < 0 || t > *closest_t)
+	if (t < 0)
 		return (false);
 	point_center_proj = vec_dot(vec_sub(rec->point, cap_center),
 			vec_sub(rec->point, cap_center));
 	if (point_center_proj > cyl->radius * cyl->radius)
 		return (false);
-	update_hit_record(rec, point_at(ray, t), axis, t, cyl->color);
+	rec->t = t;
+	update_hit_record(rec, point_at(ray, t), axis, cyl->color);
 	return (true);
 }
 
-bool	hit_cylinder_botcap(t_cylinder *cyl, t_ray *ray, t_hit_record *rec,
-			double *closest_t)
+bool	hit_cylinder_botcap(t_cylinder *cyl, t_ray *ray, t_hit_record *rec)
 {
 	double		t;
 	t_vector	axis;
@@ -122,36 +73,35 @@ bool	hit_cylinder_botcap(t_cylinder *cyl, t_ray *ray, t_hit_record *rec,
 	if (fabs(denominator) < EPSILON)
 		return (false);
 	t = vec_dot(vec_sub(cap_center, ray->origin), axis) / denominator;
-	if (t < 0 || t > *closest_t)
+	if (t < 0)
 		return (false);
 	point_center_proj = vec_dot(vec_sub(rec->point, cap_center),
 			vec_sub(rec->point, cap_center));
 	if (point_center_proj > cyl->radius * cyl->radius)
 		return (false);
+	rec->t = t;
 	update_hit_record(rec, point_at(ray, t), vec_scale(axis, -1.0),
-		t, cyl->color);
+		cyl->color);
 	return (true);
 }
 
 bool	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_hit_record *rec)
 {
 	t_hit_record	tmp_rec;
-	double			closest_t;
 	bool			hit;
 
-	closest_t = INFINITY;
 	hit = false;
-	if (hit_cyl_body(cyl, ray, &tmp_rec, &closest_t))
+	if (hit_cyl_body(cyl, ray, &tmp_rec))
 	{
 		*rec = tmp_rec;
 		hit = true;
 	}
-	if (hit_cylinder_topcap(cyl, ray, &tmp_rec, &closest_t))
+	if (hit_cylinder_topcap(cyl, ray, &tmp_rec))
 	{
 		*rec = tmp_rec;
 		hit = true;
 	}
-	if (hit_cylinder_botcap(cyl, ray, &tmp_rec, &closest_t))
+	if (hit_cylinder_botcap(cyl, ray, &tmp_rec))
 	{
 		*rec = tmp_rec;
 		hit = true;

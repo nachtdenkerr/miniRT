@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/06 20:20:59 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/07 11:33:24 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec)
 			return (false);
 	}
 	rec->point = point_at(ray, rec->t);
-	rec->normal = vec_normalize(vec_sub(rec->point, sphere->center));
-	rec->color = sphere->color;
+	update_hit_record(rec, point_at(ray, rec->t),
+		vec_normalize(vec_sub(rec->point, sphere->center)),
+		sphere->color);
 	return (true);
 }
 
@@ -54,9 +55,7 @@ bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec)
 	rec->t = vec_dot(vec_sub(plane->point, ray->origin), normal) / denominator;
 	if (rec->t < EPSILON)
 		return (false);
-	rec->normal = normal;
-	rec->point = point_at(ray, rec->t);
-	rec->color = plane->color;
+	update_hit_record(rec, point_at(ray, rec->t), normal, plane->color);
 	return (true);
 }
 
