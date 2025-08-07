@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 17:17:25 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 09:35:11 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/07 21:03:34 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_color	diffuse_lighting(t_color color, t_light *light, t_hit_record *rec)
 
 	light_dir = vec_normalize(vec_sub(light->position, rec->point));
 	intensity = fmax(vec_dot(rec->normal, light_dir), 0.0);
-	diffuse_color = color_scale(color, intensity * light->brightness);
-	return (color_add(color, diffuse_color));
+	diffuse_color = color_scale(light->color, intensity * light->brightness);
+	return (color_mult(color, diffuse_color));
 }
 
 t_color	specular_lighting(t_color color, t_ray *ray,
@@ -38,6 +38,7 @@ t_color	specular_lighting(t_color color, t_ray *ray,
 	reflect_dir = vec_reflect(light_dir, rec->normal);
 	specular_intensity = pow(fmax(vec_dot(vec_scale(reflect_dir, -1.0),
 					view_dir), 0.0), SHINIESS);
-	specular_color = color_scale(color, specular_intensity * light->brightness);
+	specular_color = color_scale(light->color,
+			specular_intensity * light->brightness);
 	return (color_add(color, specular_color));
 }
