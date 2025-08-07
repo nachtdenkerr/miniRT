@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 12:06:56 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/04 15:29:22 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:44:02 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	file_open_error_exit(char *filename)
 
 void	unknown_identifier_exit(char **tokens)
 {
-	ft_putstr_fd("Uknown Identifier: ", 2);
+	ft_putstr_fd("Unknown Identifier: ", 2);
 	if (tokens && tokens[0])
 		ft_putstr_fd(tokens[0], 2);
 	ft_putstr_fd("\n", 2);

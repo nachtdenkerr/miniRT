@@ -6,13 +6,13 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 13:25:32 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/06 10:56:21 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
+# include <curses.h>
 # include "MLX42.h"
 # include "../lib/libft/include/libft.h"
 # include "../lib/libft/include/ft_printf.h"
@@ -40,8 +40,6 @@ typedef struct s_ray
 {
 	t_point		origin;
 	t_vector	dir;
-	t_point		hit_point;
-	int			hit_found;
 }				t_ray;
 
 typedef struct s_color
@@ -70,6 +68,22 @@ typedef struct s_light
 	double		brightness; // [0.0, 1.0]
 	t_color		color;
 }				t_light;
+
+typedef enum e_obj_type
+{
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	CONE
+}	t_obj_type;
+
+typedef struct s_hit_record
+{
+	t_color		color;
+	t_vector	normal;
+	t_point		point;
+	double		t;
+}	t_hit_record;
 
 typedef struct s_sphere
 {
@@ -103,6 +117,13 @@ typedef struct s_cone
 	t_color		color;
 }				t_cone;
 
+typedef struct s_object
+{
+	t_obj_type	type;
+	void		*data;
+	bool		(*hit)(void *, t_ray *, t_hit_record *);
+}	t_object;
+
 typedef struct s_scene
 {
 	t_ambient	ambient;
@@ -112,18 +133,9 @@ typedef struct s_scene
 	t_light		*lights; // support multiple lights for bonus
 	int			light_count;
 	int			l_index;
-	t_sphere	*spheres;
-	int			sphere_count;
-	int			sp_index;
-	t_plane		*planes;
-	int			plane_count;
-	int			pl_index;
-	t_cylinder	*cylinders;
-	int			cylinder_count;
-	int			cy_index;
-	t_cone		*cones; // bonus
-	int			cone_count;
-	int			co_index;
+	t_object	*objects;
+	int			obj_index;
+	int			obj_capacity;
 }				t_scene;
 
 typedef struct s_minirt

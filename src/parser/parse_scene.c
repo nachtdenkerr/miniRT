@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/30 12:45:45 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:42:39 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	count_elements(char *line, t_scene *scene)
 	else if (!ft_strcmp(tokens[0], "L"))
 		scene->light_count++;
 	else if (!ft_strcmp(tokens[0], "sp"))
-		scene->sphere_count++;
+		scene->obj_capacity++;
 	else if (!ft_strcmp(tokens[0], "pl"))
-		scene->plane_count++;
+		scene->obj_capacity++;
 	else if (!ft_strcmp(tokens[0], "cy"))
-		scene->cylinder_count++;
+		scene->obj_capacity++;
 	else if (!ft_strcmp(tokens[0], "co"))
-		scene->cone_count++;
+		scene->obj_capacity++;
 	else
 		unknown_identifier_exit(tokens);
 	free_arr(tokens);
@@ -90,7 +90,7 @@ void	parse_element(char *line, t_scene *scene)
 	else if (!ft_strcmp(tokens[0], "pl"))
 		parse_plane(tokens, scene);
 	else if (!ft_strcmp(tokens[0], "cy"))
-		parse_cylinder(tokens, scene);
+		parse_cylinder(tokens, scene, 0);
 	else if (!ft_strcmp(tokens[0], "co"))
 		parse_cone(tokens, scene);
 	free_arr(tokens);

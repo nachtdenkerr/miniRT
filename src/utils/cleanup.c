@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:54:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/29 19:20:14 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:19:33 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,22 @@ void	free_arr(char **arr)
 
 void	cleanup_scene(t_scene *scene)
 {
+	int i;
+
+	i = 0;
 	if (scene->lights)
 		free(scene->lights);
-	if (scene->spheres)
-		free(scene->spheres);
-	if (scene->planes)
-		free(scene->planes);
-	if (scene->cylinders)
-		free(scene->cylinders);
-	if (scene->cones)
-		free(scene->cones);
+	while (i < scene->obj_index)
+	{
+		free((scene->objects[i]).data);
+		i++;
+	}
+	if (scene->objects)
+		free(scene->objects);
+	// if (scene->planes)
+	// 	free(scene->planes);
+	// if (scene->cylinders)
+	// 	free(scene->cylinders);
+	// if (scene->cones)
+	// 	free(scene->cones);
 }

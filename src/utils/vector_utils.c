@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:34:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 13:28:51 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/06 12:32:01 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,19 @@ t_vector	vec_reflect(t_vector v, t_vector n)
 
 	w = vec_sub(v, vec_scale(n, 2.0 * vec_dot(v, n)));
 	return (w);
+}
+
+t_point	point_at(t_ray *ray, double t)
+{
+	t_point	point;
+
+	point.x = ray->origin.x + ray->dir.x * t;
+	point.y = ray->origin.y + ray->dir.y * t;
+	point.z = ray->origin.z + ray->dir.z * t;
+	return (point);
+}
+
+double	deg_to_rad(double angle)
+{
+	return (angle * M_PI / 180.0);
 }

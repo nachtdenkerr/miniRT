@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:36:24 by thudinh           #+#    #+#             */
-/*   Updated: 2025/07/29 19:29:59 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/06 11:29:35 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,12 @@ void	error_exit(const char *msg)
 void	malloc_failure_exit(void)
 {
 	ft_putstr_fd("Failed Malloc\n", 2);
+	exit (1);
+}
+
+void	malloc_failure_obj_creation_exit(t_scene *scene)
+{
+	ft_putstr_fd("Failed Malloc\n", 2);
+	cleanup_scene(scene);
 	exit (1);
 }

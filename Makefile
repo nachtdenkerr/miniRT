@@ -23,22 +23,26 @@ IFLAGS	:= -Iinclude -I$(LIBFT_DIR)/include -I$(MLX42_DIR)/include/MLX42
 
 SRCS	:= 	\
 			src/main.c\
+			src/print.c\
 			$(PARS_DIR)/error.c\
 			$(PARS_DIR)/error_two.c\
 			$(PARS_DIR)/gnl_helper.c\
 			$(PARS_DIR)/gnl.c\
 			$(PARS_DIR)/init.c\
 			$(PARS_DIR)/parse_elements.c\
-			$(PARS_DIR)/parse_elements_two.c\
+			$(PARS_DIR)/parse_objects.c\
 			$(PARS_DIR)/parse_scene.c\
 			$(PARS_DIR)/parse_utils.c\
+			$(RENDER_DIR)/intersect_wrapper.c\
+			$(RENDER_DIR)/intersection.c\
+			$(RENDER_DIR)/lighting.c\
+			$(RENDER_DIR)/init_ray.c\
+			$(RENDER_DIR)/minirt.c\
 			$(UTILS_DIR)/cleanup.c\
 			$(UTILS_DIR)/vector_utils.c\
 			$(UTILS_DIR)/vector_math_utils.c\
 			$(UTILS_DIR)/error_exit.c\
-			$(RENDER_DIR)/minirt.c\
-			$(RENDER_DIR)/init_ray.c\
-
+			$(UTILS_DIR)/color_utils.c\
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
