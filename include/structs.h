@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 13:36:36 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/07 14:09:53 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ typedef struct s_hit_record
 	t_color		color;
 	t_vector	normal;
 	t_point		point;
+	double		u; //u and v are used for texture mapping
+	double		v;
 	double		t;
 }	t_hit_record;
 

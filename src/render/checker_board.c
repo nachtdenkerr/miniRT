@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:05:06 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 13:48:23 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/07 14:36:05 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_color	checker_texture(t_texture checker, t_point point)
 {
-	// bool	is_even;
 	int		total_val;
 	double	inverse_scale;
 
@@ -27,3 +26,12 @@ t_color	checker_texture(t_texture checker, t_point point)
 	else
 		return (checker.color2);
 }
+
+// void	get_sphere_uv(t_hit_record rec, t_point point)
+// {
+// 	double	theta;
+// 	double	phi;
+
+// 	theta = acos()
+// 	phi = atan2(point.x, point.z);
+// }
