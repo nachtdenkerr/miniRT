@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:38:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/06 14:43:11 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/07 14:53:36 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void		missing_element_exit(int x);
 void		free_and_failed_malloc(char **tokens, t_scene *scene);
 
 //error_two.c
+void		not_valid_format_exit(char **tokens, t_scene *scene, int x);
 void		invalid_argc_exit(char **tokens, char **arr, t_scene *scene, int x);
 void		invalid_vector_val_exit(char *str, char **tokens,
 				char **arr, t_scene *scene);
