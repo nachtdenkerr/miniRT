@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 11:33:24 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/07 20:13:08 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec)
 	t_vector	normal;
 
 	normal = plane->normal;
+	if (vec_dot(normal, ray->dir) > 0)
+		normal = vec_scale(plane->normal, -1.0);
 	denominator = vec_dot(ray->dir, normal);
 	if (fabs(denominator) < EPSILON)
 		return (false);
