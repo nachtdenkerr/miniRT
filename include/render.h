@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 09:40:28 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/07 10:34:23 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 void	update_hit_record(t_hit_record *rec, t_point point, t_vector normal,
 			t_color color);
+double	*solve_t_values(t_cylinder *cyl, t_ray *ray);
+bool	check_t_value(t_cylinder *cyl, t_ray *ray,
+			t_hit_record *rec, double t_value);
 
 bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec);
 bool	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_hit_record *rec);
