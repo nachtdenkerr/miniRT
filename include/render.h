@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 20:11:10 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/08 12:13:51 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ bool	hit_plane_wrapper(void *data, t_ray *ray, t_hit_record *rec);
 bool	hit_cone_wrapper(void *data, t_ray *ray, t_hit_record *rec);
 bool	hit_object(t_ray *ray, t_scene *scene, t_hit_record *rec);
 void	init_ray(t_ray *ray, t_scene *scene, int i, int j);
+
+t_color	checker_texture(t_texture checker, double u, double v);
+void	get_sphere_uv(t_hit_record *rec, t_point sp_center, double radius);
+void	get_plane_uv(t_hit_record *rec, t_point point);
 
 t_color	specular_lighting(t_color color, t_ray *ray,
 			t_light *light, t_hit_record *rec);

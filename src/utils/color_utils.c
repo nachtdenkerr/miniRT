@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/27 20:36:22 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 20:12:22 by thudinh          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/08/08 09:52:30 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "structs.h"
 

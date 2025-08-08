@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 12:42:09 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/05 16:32:15 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/08 10:58:57 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_vector	compute_ray_direction_helper(double x_ndc, double y_ndc,
 	cam_forward = scene->camera.orientation;
 	angle = tan(scene->camera.fov * 0.5 * M_PI / 180.0);
 	up_tmp = get_up_tmp(cam_forward);
-	cam_right = vec_normalize(vec_cross(cam_forward, up_tmp));
-	cam_up = vec_normalize(vec_cross(cam_right, cam_forward));
+	cam_right = vec_normalize(vec_cross(up_tmp, cam_forward));
+	cam_up = vec_normalize(vec_cross(cam_forward, cam_right));
 	return (vec_normalize(vec_add(vec_add(vec_scale(cam_right, x_ndc
 						* aspect_ratio * angle), vec_scale(cam_up, y_ndc
 						* angle)), cam_forward)));
@@ -75,4 +75,10 @@ void	init_ray(t_ray *ray, t_scene *scene, int i, int j)
 		printf("Pixel (%d,%d): dir = (%f, %f, %f)\n", i, j, ray->dir.x,
 			ray->dir.y, ray->dir.z);
 	}
+	if (i == 400 && j == 0)
+		printf("UP (%d,%d): dir = (%f, %f, %f)\n", i, j, ray->dir.x,
+			ray->dir.y, ray->dir.z);
+	if (i == 799 && j == 300)
+		printf("RIGHT (%d,%d): dir = (%f, %f, %f)\n", i, j, ray->dir.x,
+			ray->dir.y, ray->dir.z);
 }

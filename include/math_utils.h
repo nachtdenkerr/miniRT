@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:37:08 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/05 11:51:42 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/08 11:51:58 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ t_vector	vec_normalize(t_vector v);
 t_vector	vec_reflect(t_vector v, t_vector n);
 
 double		deg_to_rad(double angle);
+t_vector	create_point(double x, double y, double z);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/07 21:03:59 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/08 17:19:56 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ t_color	calculate_color(t_ray *ray, t_scene *scene)
 	color = create_color(0, 0, 0);
 	if (hit_object(ray, scene, &rec) == true)
 	{
-		color = color_scale(rec.color, scene->ambient.brightness);
+		color = color_scale(color_mult(rec.color, scene->ambient.color),
+				scene->ambient.brightness);
 		light_index = -1;
 		while (++light_index < scene->light_count)
 		{

@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 20:13:08 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/08 15:49:58 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec)
 	double		c;
 	double		discriminant;
 	t_vector	oc;
+	t_texture	checker;
+	t_color		color;
 
 	oc = vec_sub(ray->origin, sphere->center);
 	a = vec_dot(ray->dir, ray->dir);
@@ -36,17 +38,25 @@ bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec)
 			return (false);
 	}
 	rec->point = point_at(ray, rec->t);
+	get_sphere_uv(rec, sphere->center, sphere->radius);
+	checker.color1 = create_color(255, 255, 255);
+	checker.color2 = create_color(0, 100, 0);
+	checker.width = 30.0;
+	checker.height = 20.0;
+	color = checker_texture(checker, rec->u, rec->v);
 	update_hit_record(rec, point_at(ray, rec->t),
 		vec_normalize(vec_sub(rec->point, sphere->center)),
-		sphere->color);
+		color);
 	return (true);
 }
 
-// not yet finished
 bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec)
 {
 	double		denominator;
 	t_vector	normal;
+	t_point		point;
+	t_color		color;
+	t_texture	checker;
 
 	normal = plane->normal;
 	if (vec_dot(normal, ray->dir) > 0)
@@ -57,7 +67,15 @@ bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec)
 	rec->t = vec_dot(vec_sub(plane->point, ray->origin), normal) / denominator;
 	if (rec->t < EPSILON)
 		return (false);
-	update_hit_record(rec, point_at(ray, rec->t), normal, plane->color);
+	point = point_at(ray, rec->t);
+	checker.width = 5.0;
+	checker.height = 5.0;
+	checker.color1 = create_color(255, 255, 255);
+	checker.color2 = create_color(0, 100, 0);
+	update_hit_record(rec, point, normal, plane->color);
+	get_plane_uv(rec, plane->point);
+	color = checker_texture(checker, rec->u, rec->v);
+	update_hit_record(rec, point, normal, color);
 	return (true);
 }
 
