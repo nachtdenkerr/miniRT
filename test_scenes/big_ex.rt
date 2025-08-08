@@ -1,0 +1,23 @@
+A 0.8 160,190,255
+
+C 0,5,25 0,-0.104528,-0.994522 60
+
+l 10,30,20 0.2 255,220,180
+
+# A reflective blue sphere front left
+sp -8,0,0 6 60,120,255
+
+# A large red sphere behind the blue one
+sp 6,-3,-10 8 220,50,60
+
+# A green cylinder upright to the right
+cy 15,0,-7 0,1,0 4 15 65,210,80
+
+# A small orange sphere sitting on the plane (to check shadows)
+sp 0,-7,-5 2.5 255,130,30
+
+# A long white horizontal cylinder (pipe) crossing scene depth
+cy 0,-6,10 1,0,0 2 28 220,220,220
+
+# A tilted plane as the "ground"
+pl 0,-9,0 0,1,0 150,140,0

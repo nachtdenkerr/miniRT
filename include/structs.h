@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 14:09:53 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/08 11:01:10 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ typedef struct s_object
 
 typedef struct s_texture
 {
-	double	scale;
+	double	width;
+	double	height;
 	t_color	color1;
 	t_color	color2;
 }	t_texture;

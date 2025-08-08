@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:34:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/06 12:32:01 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/08 11:51:52 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,24 @@ t_point	point_at(t_ray *ray, double t)
 double	deg_to_rad(double angle)
 {
 	return (angle * M_PI / 180.0);
+}
+
+t_vector	random_unit_vec(void)
+{
+	t_vector	v;
+
+	v.x = (double)rand() / RAND_MAX * 2.0 - 1.0;
+	v.y = (double)rand() / RAND_MAX * 2.0 - 1.0;
+	v.z = (double)rand() / RAND_MAX * 2.0 - 1.0;
+	return (vec_normalize(v));
+}
+
+t_vector	create_point(double x, double y, double z)
+{
+	t_vector	v;
+
+	v.x = x;
+	v.y = y;
+	v.z = z;
+	return (v);
 }

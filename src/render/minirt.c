@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/07 16:43:24 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/08 09:52:05 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_color	calculate_color(t_ray *ray, t_scene *scene)
 			shadow_ray.dir = vec_normalize(vec_sub(light->position, rec.point));
 			if (is_in_shadow(scene, light, &shadow_ray) == true)
 				continue ;
-			color = diffuse_lighting(color, light, &rec);
+			color = color_add(color, diffuse_lighting(rec.color, light, &rec));
 			color = specular_lighting(color, ray, light, &rec);
 		}
 	}
