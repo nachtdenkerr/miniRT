@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:34:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/08 11:51:52 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/08 16:02:58 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,16 @@ double	vec_length(t_vector v)
 t_vector	vec_normalize(t_vector v)
 {
 	t_vector	v_n;
+	double		length;
 
+	length = vec_length(v);
+	if (length == 0)
+	{
+		v_n.x = 0;
+		v_n.y = 0;
+		v_n.z = 0;
+		return (v_n);
+	}
 	v_n = vec_scale(v, 1 / vec_length(v));
 	return (v_n);
 }

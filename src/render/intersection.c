@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/08 15:39:59 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/08 15:49:58 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec)
 	get_sphere_uv(rec, sphere->center, sphere->radius);
 	checker.color1 = create_color(255, 255, 255);
 	checker.color2 = create_color(0, 100, 0);
-	checker.width = 20.0;
+	checker.width = 30.0;
 	checker.height = 20.0;
 	color = checker_texture(checker, rec->u, rec->v);
 	update_hit_record(rec, point_at(ray, rec->t),
@@ -50,7 +50,6 @@ bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec)
 	return (true);
 }
 
-// not yet finished
 bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec)
 {
 	double		denominator;
