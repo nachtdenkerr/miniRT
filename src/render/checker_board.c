@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_board.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:05:06 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/08 14:26:31 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/08 15:36:37 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,19 @@ void	get_plane_uv(t_hit_record *rec, t_point plane_point)
 	vec_v = vec_normalize(vec_cross(normal, vec_u));
 	rec->u = vec_dot(local_vec, vec_u) / 5.0;
 	rec->v = vec_dot(local_vec, vec_v) / 5.0;
-	rec->u = fmod(rec->u, 1.0);
-	rec->v = fmod(rec->v, 1.0);
 }
 
 void	get_sphere_uv(t_hit_record *rec, t_point sp_center, double radius)
 {
 	double		theta;
 	double		phi;
-	double		raw_u;
 	double		clamped_y;
 	t_vector	local_vec;
 
 	local_vec = vec_sub(rec->point, sp_center);
 	clamped_y = fmin(fmax(local_vec.y / radius, -1.0), 1.0);
-	phi = acos(local_vec.y);
+	phi = acos(clamped_y);
 	theta = atan2(local_vec.z, local_vec.x);
-	raw_u = theta / (2 * M_PI);
-	rec->u = 1 - (raw_u + 0.5);
+	rec->u = (theta + M_PI) / (2 * M_PI);
 	rec->v = 1 - phi / M_PI;
 }
