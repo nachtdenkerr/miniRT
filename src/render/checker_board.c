@@ -6,12 +6,21 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:05:06 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/08 15:36:37 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/09 14:11:42 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
+void	checker_texture_init(t_texture *checker, double width, double height)
+{
+	checker->color1 = create_color(255, 255, 255);
+	checker->color2 = create_color(0, 100, 0);
+	checker->width = width;
+	checker->height = height;
+}
+
+// Create a checkerboard texture based on the UV coordinates
 t_color	checker_texture(t_texture checker, double u, double v)
 {
 	double	u2;
@@ -25,6 +34,7 @@ t_color	checker_texture(t_texture checker, double u, double v)
 		return (checker.color2);
 }
 
+// Convert a point in cartesian coordinates to UV coordinates
 void	get_plane_uv(t_hit_record *rec, t_point plane_point)
 {
 	t_vector	normal;
@@ -35,9 +45,17 @@ void	get_plane_uv(t_hit_record *rec, t_point plane_point)
 
 	normal = rec->normal;
 	if (fabs(normal.x) < 0.9)
-		arb_vec = create_point(1, 0, 0);
+	{
+		arb_vec.x = 1;
+		arb_vec.y = 0;
+		arb_vec.z = 0;
+	}
 	else
-		arb_vec = create_point(0, 1, 0);
+	{
+		arb_vec.x = 0;
+		arb_vec.y = 1;
+		arb_vec.z = 0;
+	}
 	local_vec = vec_sub(rec->point, plane_point);
 	vec_u = vec_normalize(vec_cross(arb_vec, normal));
 	vec_v = vec_normalize(vec_cross(normal, vec_u));
@@ -45,6 +63,7 @@ void	get_plane_uv(t_hit_record *rec, t_point plane_point)
 	rec->v = vec_dot(local_vec, vec_v) / 5.0;
 }
 
+// Convert a point in cartesian coordinates to UV coordinates for a sphere
 void	get_sphere_uv(t_hit_record *rec, t_point sp_center, double radius)
 {
 	double		theta;

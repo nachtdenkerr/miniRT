@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 12:42:09 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/08 10:58:57 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/09 13:06:43 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
+// Get an arbitrary vector that is not parallel to the camera's forward vector
 t_vector	get_up_tmp(t_vector forward)
 {
 	t_vector	up_tmp;
@@ -31,6 +32,8 @@ t_vector	get_up_tmp(t_vector forward)
 	return (up_tmp);
 }
 
+// Calculate the 2 orthogonal vectors (right and up) 
+//based on the camera's orientation
 t_vector	compute_ray_direction_helper(double x_ndc, double y_ndc,
 		double aspect_ratio, t_scene *scene)
 {
@@ -64,6 +67,8 @@ t_vector	compute_ray_direction(int i, int j, t_scene *scene)
 	return (result);
 }
 
+// Calculate the ray direction and origin for each pixel
+// in the scene based on the camera's position and orientation.
 void	init_ray(t_ray *ray, t_scene *scene, int i, int j)
 {
 	ray->dir = compute_ray_direction(i, j, scene);

@@ -3,36 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:10:17 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 10:53:49 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/09 14:08:22 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
 void	print_scene(t_scene *scene);
-
-void	fill_image_with_color(mlx_image_t *img)
-{
-	uint32_t	r;
-	uint32_t	g;
-	uint32_t	b;
-	uint32_t	color;
-
-	for (uint32_t y = 0; y < img->height; ++y)
-	{
-		for (uint32_t x = 0; x < img->width; ++x)
-		{
-			r = (x * 255) / img->width;
-			g = (y * 255) / img->height;
-			b = 255;
-			color = (r << 24) | (g << 16) | (b << 8) | 0xFF;
-			mlx_put_pixel(img, x, y, color);
-		}
-	}
-}
 
 void	close_mrt(void *param)
 {
