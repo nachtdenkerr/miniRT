@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/09 14:15:19 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/09 14:22:16 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,19 @@ bool	check_t_value(t_cylinder *cyl, t_ray *ray,
 			t_hit_record *rec, double t_value);
 
 // intersection functions
+bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec);
 bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec);
 bool	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_hit_record *rec);
-bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec);
 bool	hit_cone(t_cone *cone, t_ray *ray, t_hit_record *rec);
-bool	hit_sphere_wrapper(void *data, t_ray *ray, t_hit_record *rec,
-			t_mat mat);
-bool	hit_cylinder_wrapper(void *data, t_ray *ray, t_hit_record *rec);
+
 bool	hit_plane_wrapper(void *data, t_ray *ray, t_hit_record *rec, t_mat mat);
-bool	hit_cone_wrapper(void *data, t_ray *ray, t_hit_record *rec);
+bool	hit_sphere_wrapper(void *data, t_ray *ray,
+			t_hit_record *rec, t_mat mat);
+bool	hit_cylinder_wrapper(void *data, t_ray *ray,
+			t_hit_record *rec, t_mat mat);
+bool	hit_cone_wrapper(void *data, t_ray *ray,
+			t_hit_record *rec, t_mat mat);
+
 bool	hit_object(t_ray *ray, t_scene *scene, t_hit_record *rec);
 void	init_ray(t_ray *ray, t_scene *scene, int i, int j);
 
