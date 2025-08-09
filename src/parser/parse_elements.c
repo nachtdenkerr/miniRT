@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 18:09:39 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/07 14:51:15 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/09 14:14:01 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	is_not_valid_format(char *str)
 {
-	int i;
+	int	i;
 	int	count;
 
 	if (!str)
 		return (1);
 	i = 0;
 	count = 0;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
-		if (str[i] ==',')
+		if (str[i] == ',')
 			count++;
 		i++;
 	}
@@ -31,6 +31,7 @@ int	is_not_valid_format(char *str)
 		return (0);
 	return (1);
 }
+
 t_vector	parse_vector(char *str, char **tokens, t_scene *scene)
 {
 	t_vector	vec;

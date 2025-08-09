@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:05:06 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/09 14:03:14 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/09 14:11:42 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,17 @@ void	get_plane_uv(t_hit_record *rec, t_point plane_point)
 
 	normal = rec->normal;
 	if (fabs(normal.x) < 0.9)
-		arb_vec = create_point(1, 0, 0);
+	{
+		arb_vec.x = 1;
+		arb_vec.y = 0;
+		arb_vec.z = 0;
+	}
 	else
-		arb_vec = create_point(0, 1, 0);
+	{
+		arb_vec.x = 0;
+		arb_vec.y = 1;
+		arb_vec.z = 0;
+	}
 	local_vec = vec_sub(rec->point, plane_point);
 	vec_u = vec_normalize(vec_cross(arb_vec, normal));
 	vec_v = vec_normalize(vec_cross(normal, vec_u));

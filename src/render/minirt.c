@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/09 13:46:43 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/09 14:10:30 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_color	calculate_color(t_ray *ray, t_scene *scene, int depth)
 
 	if (hit_object(ray, scene, &rec) == true)
 	{
-		if (rec.mat_type == REFLECTIVE && depth > 0)
+		if (rec.mat == REFLECTIVE && depth > 0)
 		{
 			reflection_dir = vec_reflect(ray->dir, rec.normal);
 			reflected_ray.origin = rec.point;

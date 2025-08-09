@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:34:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/08 16:02:58 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/09 14:14:31 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_vector	vec_normalize(t_vector v)
 	return (v_n);
 }
 
-// Reflect vector v over normal n (for specular).
+// Reflect vector v over normal n (for specular and reflective objects).
 t_vector	vec_reflect(t_vector v, t_vector n)
 {
 	t_vector	w;
@@ -45,6 +45,7 @@ t_vector	vec_reflect(t_vector v, t_vector n)
 	return (w);
 }
 
+// Calculate the point at distance t along the ray.
 t_point	point_at(t_ray *ray, double t)
 {
 	t_point	point;
@@ -55,27 +56,8 @@ t_point	point_at(t_ray *ray, double t)
 	return (point);
 }
 
+// Convert degrees to radians.
 double	deg_to_rad(double angle)
 {
 	return (angle * M_PI / 180.0);
-}
-
-t_vector	random_unit_vec(void)
-{
-	t_vector	v;
-
-	v.x = (double)rand() / RAND_MAX * 2.0 - 1.0;
-	v.y = (double)rand() / RAND_MAX * 2.0 - 1.0;
-	v.z = (double)rand() / RAND_MAX * 2.0 - 1.0;
-	return (vec_normalize(v));
-}
-
-t_vector	create_point(double x, double y, double z)
-{
-	t_vector	v;
-
-	v.x = x;
-	v.y = y;
-	v.z = z;
-	return (v);
 }
