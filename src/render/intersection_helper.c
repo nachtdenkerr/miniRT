@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection_helper.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 09:37:40 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 10:50:40 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/09 13:08:51 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	update_hit_record(t_hit_record *rec, t_point point, t_vector normal,
 	rec->color = color;
 }
 
+// Solve quadratic equation for cylinder intersection
 double	*solve_t_values(t_cylinder *cyl, t_ray *ray)
 {
 	double		a;
@@ -44,6 +45,9 @@ double	*solve_t_values(t_cylinder *cyl, t_ray *ray)
 	return (result);
 }
 
+// Check if the t value is valid for the cylinder
+// t_value is the distance from the ray origin to the intersection point
+// this value must be positive and within the cylinder's height
 bool	check_t_value(t_cylinder *cyl, t_ray *ray,
 	t_hit_record *rec, double t_value)
 {

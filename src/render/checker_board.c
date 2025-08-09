@@ -6,12 +6,21 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:05:06 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/08 15:36:37 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/09 14:03:14 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
+void	checker_texture_init(t_texture *checker, double width, double height)
+{
+	checker->color1 = create_color(255, 255, 255);
+	checker->color2 = create_color(0, 100, 0);
+	checker->width = width;
+	checker->height = height;
+}
+
+// Create a checkerboard texture based on the UV coordinates
 t_color	checker_texture(t_texture checker, double u, double v)
 {
 	double	u2;
@@ -25,6 +34,7 @@ t_color	checker_texture(t_texture checker, double u, double v)
 		return (checker.color2);
 }
 
+// Convert a point in cartesian coordinates to UV coordinates
 void	get_plane_uv(t_hit_record *rec, t_point plane_point)
 {
 	t_vector	normal;
@@ -45,6 +55,7 @@ void	get_plane_uv(t_hit_record *rec, t_point plane_point)
 	rec->v = vec_dot(local_vec, vec_v) / 5.0;
 }
 
+// Convert a point in cartesian coordinates to UV coordinates for a sphere
 void	get_sphere_uv(t_hit_record *rec, t_point sp_center, double radius)
 {
 	double		theta;

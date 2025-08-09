@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection_cylinder.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 11:52:46 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 11:19:45 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/09 13:07:45 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ bool	hit_cylinder_botcap(t_cylinder *cyl, t_ray *ray, t_hit_record *rec)
 	return (true);
 }
 
+// This function checks if a ray intersects with a cylinder 
+// (body, top cap, or bottom cap).
+// Solve the quadratic equation to find the intersection points.
+// Solve the finite plane intersection for the top and bottom caps.
 bool	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_hit_record *rec)
 {
 	t_hit_record	tmp_rec;

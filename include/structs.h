@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/08 11:01:10 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/09 14:07:32 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,14 @@ typedef enum e_obj_type
 	CONE
 }	t_obj_type;
 
+typedef enum e_mat_type
+{
+	NORMAL,
+	REFLECTIVE,
+	CHECKER,
+	BUMPY
+}	t_mat;
+
 typedef struct s_hit_record
 {
 	t_color		color;
@@ -85,6 +93,7 @@ typedef struct s_hit_record
 	double		u; //u and v are used for texture mapping
 	double		v;
 	double		t;
+	t_mat		mat; // Material type for the object
 }	t_hit_record;
 
 typedef struct s_sphere
@@ -124,6 +133,7 @@ typedef struct s_object
 	t_obj_type	type;
 	void		*data;
 	bool		(*hit)(void *, t_ray *, t_hit_record *);
+	t_mat		mat;
 }	t_object;
 
 typedef struct s_texture
