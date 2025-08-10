@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/08 12:13:51 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/10 12:05:45 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,25 @@
 # ifndef SHININESS
 #  define SHINIESS 32
 # endif
+
+typedef struct s_cone_var
+{
+	t_point		p;
+	t_vector	u;
+	t_vector	v;
+	t_vector	w;
+	t_vector	normal;
+	double		m;
+	double		n;
+	double		k;
+	double		a;
+	double		half_b;
+	double		c;
+	double		tx_minus;
+	double		tx_plus;
+	double		delta;
+	double		s;
+}				t_cone_var;
 
 void	update_hit_record(t_hit_record *rec, t_point point, t_vector normal,
 			t_color color);
@@ -46,5 +65,10 @@ t_color	specular_lighting(t_color color, t_ray *ray,
 t_color	diffuse_lighting(t_color color, t_light *light, t_hit_record *rec);
 
 void	minirt(t_minirt *mrt);
+
+//cone_triangle_helper.c
+bool	calculate_cone(t_cone_var *var, double *t);
+void	init_cone_var(t_cone_var *var, t_cone *cone, t_ray *ray);
+void	ft_swap(double *x, double *y);
 
 #endif
