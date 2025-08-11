@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:42 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/11 10:36:42 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/10 12:09:31 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	parse_cone(char **tokens, t_scene *scene)
 	co->axis = parse_vector(tokens[2], tokens, scene);
 	if (check_if_unit_vector(co->axis))
 		invalid_arg_exit(tokens, scene, 6);
-	co->angle = ft_atof(tokens[3], &flag, 1, 0);
+	co->angle = ft_atof(tokens[3], &flag, 1, 0) * M_PI / 180;
 	if (flag || co->angle <= 0.0 || co->angle >= 180)
 		invalid_arg_exit(tokens, scene, 7);
 	co->color = parse_color(tokens[4], tokens, scene);

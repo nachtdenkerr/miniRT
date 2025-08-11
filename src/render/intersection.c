@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/09 14:04:03 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/10 12:18:20 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,41 @@ bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec)
 	return (true);
 }
 
+//cone Definition = "((P - A) * v)^2 = cos^2 * θ ||P - A||^2" Where:
+//P = a point that is on the plain so we insert or Ray point definition for P:
+//P = R(t) = O +tD
+//A = is the Apex point of the cone;
+//v = is the axis vector pointing "down" the cones center;
+//θ = is the half angle;
+//after insirting our ray formula for P and much rearengment and expandsion
+//we end up with this formula:
+// at^2 + bt + c = 0 where:
+//a = (D * v)^2 - cos^2 θ;
+//b = 2((D * v)((O - A) * v)cos^2 θ((O - A) * D));
+//half_b = ((D * v)((O - A) * v)cos^2 θ((O - A) * D));
+//c = ((O - A) * v)^2 - cos^2 θ * ||0 - A||^2;
+// if we solve now for t we will end up with:
+//t= (-half_b ± √Δ) / a; where:
+//Δ = half_b^2 - ac;
+//if Δ is < 0 the ray never hits the cone if Δ is >= 0 it does;
 bool	hit_cone(t_cone *cone, t_ray *ray, t_hit_record *rec)
 {
-	double		a;
-	double		h;
-	double		c;
-	double		k_sqr;
-	double		discriminant;
-	t_vector	oc;
+	t_cone_var	var;
+	double		t;
 
-	oc = vec_sub(cone->apex, ray->origin);
-	k_sqr = tan(deg_to_rad(cone->angle)) * tan(deg_to_rad(cone->angle));
-	a = vec_dot(ray->dir, ray->dir)
-		- (1 + k_sqr) * pow(vec_dot(ray->dir, cone->axis), 2);
-	h = vec_dot(ray->dir, oc) - (1 + k_sqr) * vec_dot(ray->dir, cone->axis)
-		* vec_dot(oc, cone->axis);
-	c = vec_dot(oc, oc) - (1 + k_sqr) * pow(vec_dot(oc, cone->axis), 2);
-	discriminant = h * h - a * c;
-	if (discriminant < 0)
-		return (false);
-	rec->t = (h - sqrt(discriminant)) / a;
-	rec->color = cone->color;
-	return (true);
+	t = 0.0;
+	init_cone_var(&var, cone, ray);
+	if (calculate_cone(&var, &t))
+	{
+		var.p = point_at(ray, t);
+		var.u = vec_sub(var.p, cone->apex);
+		var.normal = vec_sub(vec_scale(var.v, vec_dot(var.u, var.v)), vec_scale(var.u, var.k));
+		var.normal = vec_normalize(var.normal);
+		if (vec_dot(var.normal, ray->dir) > 0.0)
+			var.normal = vec_scale(var.normal, -1.0);
+		rec->t = t;
+		update_hit_record(rec, var.p, var.normal, cone->color);
+		return (true);
+	}
+	return (false);
 }
