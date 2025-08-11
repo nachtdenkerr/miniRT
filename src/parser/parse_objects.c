@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:42 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/11 09:26:00 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/11 10:36:42 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parse_sphere(char **tokens, t_scene *scene)
 		malloc_failure_obj_creation_exit(scene);
 	obj.type = SPHERE;
 	obj.data = sp;
-	obj.mat = REFLECTIVE;
+	// obj.mat = REFLECTIVE;
 	obj.hit = &hit_sphere_wrapper;
 	scene->objects[scene->obj_index] = obj;
 	scene->obj_index++;
