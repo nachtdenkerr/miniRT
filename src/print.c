@@ -50,6 +50,23 @@ void print_cone(void *data)
     print_vector("    Axis", c->axis);
     printf("    Angle: %.2f\n", c->angle);
     print_color(c->color);
+    switch (c->type)
+    {
+        case MIRROR:
+            printf("MIRROR: %.2f\n", c->mat_value);
+            break;
+        case CHECKER_BOARD:
+            printf("CHESS: %.2f\n", c->mat_value);
+            break;
+        case BUMP_MAPPING:
+            printf("BUMP: %.2f\n", c->mat_value);
+            break;
+        case IMAGE_MAPPING:
+            printf("IMAGE: %.2f\n", c->mat_value);
+            break;
+        default:
+            break;
+    }
 }
 
 
@@ -87,6 +104,23 @@ void print_sphere(void *data)
     print_vector("    Center", s->center);
     printf("    Radius: %.2f\n", s->radius);
     print_color(s->color);
+    switch (s->type)
+    {
+        case MIRROR:
+            printf("MIRROR: %.2f\n", s->mat_value);
+            break;
+        case CHECKER_BOARD:
+            printf("CHESS: %.2f\n", s->mat_value);
+            break;
+        case BUMP_MAPPING:
+            printf("BUMP: %.2f\n", s->mat_value);
+            break;
+        case IMAGE_MAPPING:
+            printf("IMAGE: %.2f\n", s->mat_value);
+            break;
+        default:
+            break;
+    }
 }
 
 void print_plane(void *data)
@@ -96,6 +130,23 @@ void print_plane(void *data)
     print_vector("    Point", p->point);
     print_vector("    Normal", p->normal);
     print_color(p->color);
+    switch (p->type)
+    {
+        case MIRROR:
+            printf("MIRROR: %.2f\n", p->mat_value);
+            break;
+        case CHECKER_BOARD:
+            printf("CHESS: %.2f\n", p->mat_value);
+            break;
+        case BUMP_MAPPING:
+            printf("BUMP: %.2f\n", p->mat_value);
+            break;
+        case IMAGE_MAPPING:
+            printf("IMAGE: %.2f\n", p->mat_value);
+            break;
+        default:
+            break;
+    }
 }
 
 void print_cylinder(void *data)
@@ -106,6 +157,23 @@ void print_cylinder(void *data)
     print_vector("    Axis", c->axis);
     printf("    Radius: %.2f, Height: %.2f\n", c->radius, c->height);
     print_color(c->color);
+    switch (c->type)
+    {
+        case MIRROR:
+            printf("MIRROR: %.2f\n", c->mat_value);
+            break;
+        case CHECKER_BOARD:
+            printf("CHESS: %.2f\n", c->mat_value);
+            break;
+        case BUMP_MAPPING:
+            printf("BUMP: %.2f\n", c->mat_value);
+            break;
+        case IMAGE_MAPPING:
+            printf("IMAGE: %.2f\n", c->mat_value);
+            break;
+        default:
+            break;
+    }
 }
 
 void print_scene(t_scene *scene)

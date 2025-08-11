@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/10 12:05:45 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/11 09:45:20 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,16 @@ bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hit_record *rec);
 bool	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_hit_record *rec);
 bool	hit_plane(t_plane *plane, t_ray *ray, t_hit_record *rec);
 bool	hit_cone(t_cone *cone, t_ray *ray, t_hit_record *rec);
+bool	hit_triangle(t_triangle *tri, t_ray *ray, t_hit_record *rec);
+
 bool	hit_sphere_wrapper(void *data, t_ray *ray, t_hit_record *rec);
 bool	hit_cylinder_wrapper(void *data, t_ray *ray, t_hit_record *rec);
 bool	hit_plane_wrapper(void *data, t_ray *ray, t_hit_record *rec);
 bool	hit_cone_wrapper(void *data, t_ray *ray, t_hit_record *rec);
+bool	hit_triangle_wrapper(void *data, t_ray *ray, t_hit_record *rec);
+
 bool	hit_object(t_ray *ray, t_scene *scene, t_hit_record *rec);
+
 void	init_ray(t_ray *ray, t_scene *scene, int i, int j);
 
 t_color	checker_texture(t_texture checker, double u, double v);
