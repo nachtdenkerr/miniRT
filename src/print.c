@@ -3,43 +3,43 @@
 #include "structs.h"
 
 // Forward declarations for object printing
-void print_sphere(void *data);
-void print_plane(void *data);
-void print_cylinder(void *data);
+void	print_sphere(void *data);
+void	print_plane(void *data);
+void	print_cylinder(void *data);
 
 void print_color(t_color color)
 {
-    printf("Color: (r=%d, g=%d, b=%d)\n", color.r, color.g, color.b);
+	printf("Color: (r=%d, g=%d, b=%d)\n", color.r, color.g, color.b);
 }
 
 void print_vector(const char *label, t_vector v)
 {
-    printf("%s: (x=%.2f, y=%.2f, z=%.2f)\n", label, v.x, v.y, v.z);
+	printf("%s: (x=%.2f, y=%.2f, z=%.2f)\n", label, v.x, v.y, v.z);
 }
 
 // Print one ambient
 void print_ambient(t_ambient a)
 {
-    printf("Ambient:\n  Brightness: %.2f\n  ", a.brightness);
-    print_color(a.color);
+	printf("Ambient:\n  Brightness: %.2f\n  ", a.brightness);
+	print_color(a.color);
 }
 
 // Print one camera
 void print_camera(t_camera c)
 {
-    printf("Camera:\n");
-    print_vector("  Position", c.position);
-    print_vector("  Orientation", c.orientation);
-    printf("  FOV: %.2f\n", c.fov);
+	printf("Camera:\n");
+	print_vector("  Position", c.position);
+	print_vector("  Orientation", c.orientation);
+	printf("  FOV: %.2f\n", c.fov);
 }
 
 // Print one light
 void print_light(t_light l)
 {
-    printf("Light:\n");
-    print_vector("  Position", l.position);
-    printf("  Brightness: %.2f\n", l.brightness);
-    print_color(l.color);
+	printf("Light:\n");
+	print_vector("  Position", l.position);
+	printf("  Brightness: %.2f\n", l.brightness);
+	print_color(l.color);
 }
 
 void print_cone(void *data)
@@ -63,32 +63,33 @@ void print_cone(void *data)
     }
 }
 
-
 void print_object(t_object *obj)
 {
-    if (!obj) return;
-    printf("Object: ");
-    switch (obj->type) {
-        case SPHERE:
-            printf("Sphere\n");
-            print_sphere(obj->data);
-            break;
-        case PLANE:
-            printf("Plane\n");
-            print_plane(obj->data);
-            break;
-        case CYLINDER:
-            printf("Cylinder\n");
-            print_cylinder(obj->data);
-            break;
-        case CONE:
-            printf("Cone\n");
-            print_cone(obj->data);
-            break;
-        default:
-            printf("Unknown type\n");
-            break;
-    }
+	if (!obj)
+		return ;
+	printf("Object: ");
+	switch (obj->type)
+	{
+	case SPHERE:
+		printf("Sphere\n");
+		print_sphere(obj->data);
+		break;
+	case PLANE:
+		printf("Plane\n");
+		print_plane(obj->data);
+		break;
+	case CYLINDER:
+		printf("Cylinder\n");
+		print_cylinder(obj->data);
+		break;
+	case CONE:
+		printf("Cone\n");
+		print_cone(obj->data);
+		break;
+	default:
+		printf("Unknown type\n");
+		break;
+	}
 }
 
 void print_sphere(void *data)
@@ -154,27 +155,19 @@ void print_cylinder(void *data)
 
 void print_scene(t_scene *scene)
 {
-    if (!scene) return;
+	if (!scene)
+		return ;
 
-    printf("=== Scene ===\n");
+	printf("=== Scene ===\n");
 
-    // Ambient
-    print_ambient(scene->ambient);
-
-    // Camera
-    print_camera(scene->camera);
-
-    // Lights
-    printf("\nLights (%d):\n", scene->light_count);
-    for (int i = 0; i < scene->light_count; ++i)
-        print_light(scene->lights[i]);
-
-    // Objects
-    printf("\nObjects (%d):\n", scene->obj_capacity);
-    for (int i = 0; i < scene->obj_capacity; ++i)
-	{
-        print_object(&scene->objects[i]);
-	}
+	print_ambient(scene->ambient);
+	print_camera(scene->camera);
+	printf("\nLights (%d):\n", scene->light_count);
+	for (int i = 0; i < scene->light_count; ++i)
+		print_light(scene->lights[i]);
+	printf("\nObjects (%d):\n", scene->obj_capacity);
+	for (int i = 0; i < scene->obj_capacity; ++i)
+		print_object(&scene->objects[i]);
 	if (1)
 		printf("done\n");
 }

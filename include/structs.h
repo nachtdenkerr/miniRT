@@ -93,6 +93,7 @@ typedef struct s_hit_record
 	double		u; //u and v are used for texture mapping
 	double		v;
 	double		t;
+	t_mat		mat; // Material type for the object
 }	t_hit_record;
 
 typedef struct s_sphere
@@ -149,7 +150,8 @@ typedef struct s_object
 {
 	t_obj_type	type;
 	void		*data;
-	bool		(*hit)(void *, t_ray *, t_hit_record *);
+	bool		(*hit)(void *, t_ray *, t_hit_record *, t_mat mat);
+	t_mat		mat;
 }	t_object;
 
 typedef struct s_texture

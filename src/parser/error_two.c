@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   error_two.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 18:26:22 by jmutschl          #+#    #+#             */
 /*   Updated: 2025/08/11 10:14:38 by jmutschl         ###   ########.fr       */
@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "parser.h"
- 
+
 void	not_valid_format_exit(char **tokens, t_scene *scene, int x)
 {
 	free_arr(tokens);

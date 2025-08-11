@@ -14,26 +14,6 @@
 
 void	print_scene(t_scene *scene);
 
-void	fill_image_with_color(mlx_image_t *img)
-{
-	uint32_t	r;
-	uint32_t	g;
-	uint32_t	b;
-	uint32_t	color;
-
-	for (uint32_t y = 0; y < img->height; ++y)
-	{
-		for (uint32_t x = 0; x < img->width; ++x)
-		{
-			r = (x * 255) / img->width;
-			g = (y * 255) / img->height;
-			b = 255;
-			color = (r << 24) | (g << 16) | (b << 8) | 0xFF;
-			mlx_put_pixel(img, x, y, color);
-		}
-	}
-}
-
 void	close_mrt(void *param)
 {
 	t_minirt	*mrt;
@@ -100,13 +80,11 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_exit("Usage: ./miniRT scene.rt");
 	parse_scene(argv[1], &scene);
-	print_scene(&scene);
-	//mrt = init_minirt(&scene);
-	//if (!mrt)
-	//	return (cleanup_scene(&scene), EXIT_FAILURE);
-	//minirt(mrt);
-	//mlx_image_to_window(mrt->mlx, mrt->img, 0, 0);
-	//mlx_loop(mrt->mlx);
-	cleanup_scene(&scene);
+	mrt = init_minirt(&scene);
+	if (!mrt)
+		return (cleanup_scene(&scene), EXIT_FAILURE);
+	minirt(mrt);
+	mlx_image_to_window(mrt->mlx, mrt->img, 0, 0);
+	mlx_loop(mrt->mlx);
 	return (0);
 }
