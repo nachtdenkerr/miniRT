@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:42 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/11 10:50:56 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/11 11:20:01 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	invalid_mat_val_exit(char *str, char **tokens,
 	exit (1);
 }
 
-t_material_type	get_material(char *str, double *value, char **tokens,
+t_mat	get_material(char *str, double *value, char **tokens,
 				t_scene *scene)
 {
 	char	**arr;
@@ -42,13 +42,9 @@ t_material_type	get_material(char *str, double *value, char **tokens,
 	if (flag || *value < 0.0 || *value > 1.0)
 		invalid_mat_val_exit(arr[1], tokens, arr, scene);
 	if (!ft_strcmp(arr[0], "mr"))
-		return (free_arr(arr), MIRROR);
+		return (free_arr(arr), REFLECTIVE);
 	else if (!ft_strcmp(arr[0], "cb"))
-		return (free_arr(arr), CHECKER_BOARD);
-	else if (!ft_strcmp(arr[0], "bp"))
-		return (free_arr(arr), BUMP_MAPPING);
-	else if (!ft_strcmp(arr[0], "im"))
-		return (free_arr(arr), IMAGE_MAPPING);
+		return (free_arr(arr), CHECKER);
 	ft_putstr_fd("Invalid Material identifier\n", 2);
 	free_arr(arr);
 	free_arr(tokens);
@@ -81,7 +77,7 @@ void	parse_sphere(char **tokens, t_scene *scene)
 	if (tokens[4])
 		sp->type = get_material(tokens[4], &sp->mat_value, tokens, scene);
 	else
-		sp->type = NOT_SET;
+		sp->type = NORMAL;
 }
 
 void	parse_plane(char **tokens, t_scene *scene)
@@ -108,7 +104,7 @@ void	parse_plane(char **tokens, t_scene *scene)
 	if (tokens[4])
 		pl->type = get_material(tokens[4], &pl->mat_value, tokens, scene);
 	else
-		pl->type = NOT_SET;
+		pl->type = NORMAL;
 }
 
 void	parse_cylinder(char **tokens, t_scene *scene, int flag)
@@ -142,7 +138,7 @@ void	parse_cylinder(char **tokens, t_scene *scene, int flag)
 	if (tokens[6])
 		cy->type = get_material(tokens[6], &cy->mat_value, tokens, scene);
 	else
-		cy->type = NOT_SET;
+		cy->type = NORMAL;
 }
 
 void	parse_cone(char **tokens, t_scene *scene)
@@ -174,7 +170,7 @@ void	parse_cone(char **tokens, t_scene *scene)
 	if (tokens[5])
 		co->type = get_material(tokens[5], &co->mat_value, tokens, scene);
 	else
-		co->type = NOT_SET;
+		co->type = NORMAL;
 }
 
 void	parse_triangle(char **tokens, t_scene *scene)
@@ -200,5 +196,5 @@ void	parse_triangle(char **tokens, t_scene *scene)
 	if (tokens[5])
 		tr->type = get_material(tokens[5], &tr->mat_value, tokens, scene);
 	else
-		tr->type = NOT_SET;
+		tr->type = NORMAL;
 }

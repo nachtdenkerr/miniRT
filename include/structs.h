@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/11 10:42:31 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/11 11:16:40 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,12 @@ typedef enum e_obj_type
 	TRIANGLE
 }	t_obj_type;
 
-typedef enum e_material_type
+typedef enum e_mat_type
 {
-	NOT_SET,
-	MIRROR,
-	CHECKER_BOARD,
-	BUMP_MAPPING,
-	IMAGE_MAPPING
-}	t_material_type;
+	NORMAL,
+	REFLECTIVE,
+	CHECKER
+}	t_mat;
 
 typedef struct s_hit_record
 {
@@ -102,7 +100,7 @@ typedef struct s_sphere
 	t_point			center;
 	double			radius;
 	t_color			color;
-	t_material_type	type;
+	t_mat			type;
 	double			mat_value;
 }				t_sphere;
 
@@ -111,7 +109,7 @@ typedef struct s_plane
 	t_point			point;
 	t_vector		normal;
 	t_color			color;
-	t_material_type	type;
+	t_mat			type;
 	double			mat_value;
 }				t_plane;
 
@@ -122,7 +120,7 @@ typedef struct s_cylinder
 	double			radius;
 	double			height;
 	t_color			color;
-	t_material_type	type;
+	t_mat			type;
 	double			mat_value;
 }				t_cylinder;
 
@@ -133,7 +131,7 @@ typedef struct s_cone
 	t_vector		axis;
 	double			angle;
 	t_color			color;
-	t_material_type	type;
+	t_mat			type;
 	double			mat_value;
 }				t_cone;
 
@@ -143,7 +141,7 @@ typedef struct s_triangle
 	t_point			v2;
 	t_point			v3;
 	t_color			color;
-	t_material_type	type;
+	t_mat			type;
 	double			mat_value;
 }				t_triangle;
 

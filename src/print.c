@@ -52,17 +52,11 @@ void print_cone(void *data)
     print_color(c->color);
     switch (c->type)
     {
-        case MIRROR:
+        case REFLECTIVE:
             printf("MIRROR: %.2f\n", c->mat_value);
             break;
-        case CHECKER_BOARD:
+        case CHECKER:
             printf("CHESS: %.2f\n", c->mat_value);
-            break;
-        case BUMP_MAPPING:
-            printf("BUMP: %.2f\n", c->mat_value);
-            break;
-        case IMAGE_MAPPING:
-            printf("IMAGE: %.2f\n", c->mat_value);
             break;
         default:
             break;
@@ -106,17 +100,11 @@ void print_sphere(void *data)
     print_color(s->color);
     switch (s->type)
     {
-        case MIRROR:
+        case REFLECTIVE:
             printf("MIRROR: %.2f\n", s->mat_value);
             break;
-        case CHECKER_BOARD:
+        case CHECKER:
             printf("CHESS: %.2f\n", s->mat_value);
-            break;
-        case BUMP_MAPPING:
-            printf("BUMP: %.2f\n", s->mat_value);
-            break;
-        case IMAGE_MAPPING:
-            printf("IMAGE: %.2f\n", s->mat_value);
             break;
         default:
             break;
@@ -132,17 +120,11 @@ void print_plane(void *data)
     print_color(p->color);
     switch (p->type)
     {
-        case MIRROR:
+        case REFLECTIVE:
             printf("MIRROR: %.2f\n", p->mat_value);
             break;
-        case CHECKER_BOARD:
+        case CHECKER:
             printf("CHESS: %.2f\n", p->mat_value);
-            break;
-        case BUMP_MAPPING:
-            printf("BUMP: %.2f\n", p->mat_value);
-            break;
-        case IMAGE_MAPPING:
-            printf("IMAGE: %.2f\n", p->mat_value);
             break;
         default:
             break;
@@ -159,17 +141,11 @@ void print_cylinder(void *data)
     print_color(c->color);
     switch (c->type)
     {
-        case MIRROR:
+        case REFLECTIVE:
             printf("MIRROR: %.2f\n", c->mat_value);
             break;
-        case CHECKER_BOARD:
+        case CHECKER:
             printf("CHESS: %.2f\n", c->mat_value);
-            break;
-        case BUMP_MAPPING:
-            printf("BUMP: %.2f\n", c->mat_value);
-            break;
-        case IMAGE_MAPPING:
-            printf("IMAGE: %.2f\n", c->mat_value);
             break;
         default:
             break;

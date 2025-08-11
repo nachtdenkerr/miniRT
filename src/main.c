@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:10:17 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/07 10:53:49 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/11 10:49:16 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,19 @@ t_minirt	*init_minirt(t_scene *scene)
 int	main(int argc, char **argv)
 {
 	t_scene		scene;
-	t_minirt	*mrt;
+	//t_minirt	*mrt;
 
 	(void)argv;
 	if (argc != 2)
 		error_exit("Usage: ./miniRT scene.rt");
 	parse_scene(argv[1], &scene);
-	mrt = init_minirt(&scene);
-	if (!mrt)
-		return (cleanup_scene(&scene), EXIT_FAILURE);
-	minirt(mrt);
-	mlx_image_to_window(mrt->mlx, mrt->img, 0, 0);
-	mlx_loop(mrt->mlx);
+	print_scene(&scene);
+	//mrt = init_minirt(&scene);
+	//if (!mrt)
+	//	return (cleanup_scene(&scene), EXIT_FAILURE);
+	//minirt(mrt);
+	//mlx_image_to_window(mrt->mlx, mrt->img, 0, 0);
+	//mlx_loop(mrt->mlx);
+	cleanup_scene(&scene);
 	return (0);
 }
