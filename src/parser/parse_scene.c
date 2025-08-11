@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/07 14:40:35 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/11 09:40:00 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	count_elements(char *line, t_scene *scene)
 	else if (!ft_strcmp(tokens[0], "cy"))
 		scene->obj_capacity++;
 	else if (!ft_strcmp(tokens[0], "co"))
+		scene->obj_capacity++;
+	else if (!ft_strcmp(tokens[0], "tr"))
 		scene->obj_capacity++;
 	else
 		unknown_identifier_exit(tokens);
@@ -73,12 +75,9 @@ void	parse_element(char *line, t_scene *scene)
 	char	**tokens;
 
 	tokens = ft_split(line, ' ');
-	if (!tokens)
-	{
-		free(line);
-		malloc_failure_exit();
-	}
 	free(line);
+	if (!tokens)
+		malloc_failure_exit();
 	if (!ft_strcmp(tokens[0], "A"))
 		parse_ambient(tokens, scene);
 	else if (!ft_strcmp(tokens[0], "C"))
@@ -93,6 +92,8 @@ void	parse_element(char *line, t_scene *scene)
 		parse_cylinder(tokens, scene, 0);
 	else if (!ft_strcmp(tokens[0], "co"))
 		parse_cone(tokens, scene);
+	else if (!ft_strcmp(tokens[0], "tr"))
+		parse_triangle(tokens, scene);
 	free_arr(tokens);
 }
 
