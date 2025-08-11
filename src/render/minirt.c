@@ -3,55 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/08 17:19:56 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/11 10:33:31 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-bool	is_in_shadow(t_scene *scene, t_light *light, t_ray *shadow)
+t_color	reflect_color(t_ray *ray, t_hit_record *rec, t_scene *scene, int depth)
 {
-	t_hit_record	empty_rec;
-	double			distance_to_light;
+	t_ray			rf_ray;
+	t_vector		rf_dir;
 
-	if (hit_object(shadow, scene, &empty_rec) == true)
-	{
-		distance_to_light = vec_length(vec_sub(light->position,
-					shadow->origin));
-		if (empty_rec.t < distance_to_light)
-			return (true);
-	}
-	return (false);
+	rf_dir = vec_reflect(ray->dir, rec->normal);
+	rf_ray.origin = vec_add(rec->point, vec_scale(rf_dir, EPSILON));
+	rf_ray.dir = rf_dir;
+	return (calculate_color(&rf_ray, scene, depth - 1));
 }
 
-t_color	calculate_color(t_ray *ray, t_scene *scene)
+t_color	calculate_color(t_ray *ray, t_scene *scene, int depth)
 {
 	t_color			color;
 	t_hit_record	rec;
-	t_light			*light;
-	int				light_index;
-	t_ray			shadow_ray;
 
-	color = create_color(0, 0, 0);
 	if (hit_object(ray, scene, &rec) == true)
 	{
+		if (depth <= 0)
+			return (create_color(0, 0, 0));
+		if (rec.mat == REFLECTIVE && depth > 0)
+			return (reflect_color(ray, &rec, scene, depth -1));
+		else
+			color = rec.color;
 		color = color_scale(color_mult(rec.color, scene->ambient.color),
 				scene->ambient.brightness);
-		light_index = -1;
-		while (++light_index < scene->light_count)
-		{
-			light = &scene->lights[light_index];
-			shadow_ray.origin = vec_add(rec.point, vec_scale(rec.normal, EPSILON));
-			shadow_ray.dir = vec_normalize(vec_sub(light->position, rec.point));
-			if (is_in_shadow(scene, light, &shadow_ray) == true)
-				continue ;
-			color = color_add(color, diffuse_lighting(rec.color, light, &rec));
-			color = specular_lighting(color, ray, light, &rec);
-		}
+		color = combine_lighting(color, scene, rec, ray);
 	}
+	else
+		color = starry_sky_color(ray);
 	return (color_clamp(color));
 }
 
@@ -70,7 +60,7 @@ void	minirt(t_minirt *mrt)
 		while (x < 800)
 		{
 			init_ray(&ray, mrt->scene, x, y);
-			color_tmp = calculate_color(&ray, mrt->scene);
+			color_tmp = calculate_color(&ray, mrt->scene, 5);
 			color = combine_color(color_tmp);
 			mlx_put_pixel(mrt->img, x, y, color);
 			x++;
