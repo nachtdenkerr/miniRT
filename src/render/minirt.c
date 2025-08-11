@@ -3,31 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/09 14:10:30 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/11 10:33:31 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
+t_color	reflect_color(t_ray *ray, t_hit_record *rec, t_scene *scene, int depth)
+{
+	t_ray			rf_ray;
+	t_vector		rf_dir;
+
+	rf_dir = vec_reflect(ray->dir, rec->normal);
+	rf_ray.origin = vec_add(rec->point, vec_scale(rf_dir, EPSILON));
+	rf_ray.dir = rf_dir;
+	return (calculate_color(&rf_ray, scene, depth - 1));
+}
+
 t_color	calculate_color(t_ray *ray, t_scene *scene, int depth)
 {
 	t_color			color;
 	t_hit_record	rec;
-	t_ray			reflected_ray;
-	t_vector		reflection_dir;
 
 	if (hit_object(ray, scene, &rec) == true)
 	{
+		if (depth <= 0)
+			return (create_color(0, 0, 0));
 		if (rec.mat == REFLECTIVE && depth > 0)
-		{
-			reflection_dir = vec_reflect(ray->dir, rec.normal);
-			reflected_ray.origin = rec.point;
-			reflected_ray.dir = reflection_dir;
-			color = calculate_color(&reflected_ray, scene, depth - 1);
-		}
+			return (reflect_color(ray, &rec, scene, depth -1));
 		else
 			color = rec.color;
 		color = color_scale(color_mult(rec.color, scene->ambient.color),

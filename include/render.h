@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/09 14:22:16 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/11 10:33:55 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ t_color	specular_lighting(t_color color, t_ray *ray,
 			t_light *light, t_hit_record *rec);
 t_color	diffuse_lighting(t_color color, t_light *light, t_hit_record *rec);
 t_color	combine_lighting(t_color color, t_scene *scene,
-			t_hit_record rec, t_ray *ray);
+t_hit_record rec, t_ray *ray);
+t_color	starry_sky_color(t_ray *ray);
 
+t_color	calculate_color(t_ray *ray, t_scene *scene, int depth);
 void	minirt(t_minirt *mrt);
 
 #endif

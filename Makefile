@@ -38,6 +38,7 @@ SRCS	:= 	\
 			$(RENDER_DIR)/intersection_cylinder.c\
 			$(RENDER_DIR)/intersection_wrapper.c\
 			$(RENDER_DIR)/intersection_helper.c\
+			$(RENDER_DIR)/sky_box_model.c\
 			$(RENDER_DIR)/lighting.c\
 			$(RENDER_DIR)/init_ray.c\
 			$(RENDER_DIR)/minirt.c\
