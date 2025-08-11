@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection_wrapper.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:40:20 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/09 14:23:38 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/11 09:44:10 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ bool	hit_cone_wrapper(void *data, t_ray *ray, t_hit_record *rec, t_mat mat)
 	{
 	}
 	return (hit_cone(((t_cone *)data), ray, rec));
+}
+
+bool	hit_triangle_wrapper(void *data, t_ray *ray, t_hit_record *rec)
+{
+	return (hit_triangle(((t_triangle *)data), ray, rec));
 }
 
 // Loop through all objects in the scene and check if the ray hits any of them

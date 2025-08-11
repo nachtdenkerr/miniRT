@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/10 12:18:20 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/11 10:57:07 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,13 @@ bool	hit_cone(t_cone *cone, t_ray *ray, t_hit_record *rec)
 		update_hit_record(rec, var.p, var.normal, cone->color);
 		return (true);
 	}
+	return (false);
+}
+
+bool	hit_triangle(t_triangle *tri, t_ray *ray, t_hit_record *rec)
+{
+	(void)tri;
+	(void)ray;
+	(void)rec;
 	return (false);
 }

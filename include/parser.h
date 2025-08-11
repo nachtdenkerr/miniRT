@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:38:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/07 14:53:36 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/11 09:46:11 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,17 @@ void		reset_index(t_scene *scene);
 void		init_element_counts(t_scene *scene);
 void		init_element_arrays(t_scene *scene);
 
-//parse_elements_two.c
-void		parse_light(char **tokens, t_scene *scene);
+//parse_object.c
 void		parse_sphere(char **tokens, t_scene *scene);
 void		parse_plane(char **tokens, t_scene *scene);
 void		parse_cylinder(char **tokens, t_scene *scene, int flag);
 void		parse_cone(char **tokens, t_scene *scene);
+void		parse_triangle(char **tokens, t_scene *scene);
 
 //parse_elements.c
 void		parse_ambient(char **tokens, t_scene *scene);
 void		parse_camera(char **tokens, t_scene *scene);
+void		parse_light(char **tokens, t_scene *scene);
 t_color		parse_color(char *str, char **tokens, t_scene *scene);
 t_vector	parse_vector(char *str, char **tokens, t_scene *scene);
 

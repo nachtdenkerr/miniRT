@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 18:26:22 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/09 14:12:22 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/11 10:14:38 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,23 @@ void	invalid_argc_exit(char **tokens, char **arr, t_scene *scene, int x)
 	if (x == 1)
 		ft_putstr_fd("Invalid vector or color format expected 3\n", 2);
 	else if (x == 2)
-		ft_putstr_fd("Invalid number of arguments for sphere expected 4\n", 2);
+		ft_putstr_fd("Invalid argc for sphere expected 4 to 5\n", 2);
 	else if (x == 3)
-		ft_putstr_fd("Invalid number of arguments for plane expected 4\n", 2);
+		ft_putstr_fd("Invalid argc for plane expected 4 to 5\n", 2);
 	else if (x == 4)
-		ft_putstr_fd("Invalid number of argument for cylinder expected 6\n", 2);
+		ft_putstr_fd("Invalid argc for cylinder expected 6 to 7\n", 2);
 	else if (x == 5)
-		ft_putstr_fd("Invalid number of arguments for cone expected 5\n", 2);
+		ft_putstr_fd("Invalid argc for cone expected 5 to 6\n", 2);
 	else if (x == 6)
-		ft_putstr_fd("Invalid number of arguments for light expected 4\n", 2);
+		ft_putstr_fd("Invalid argc for light expected 4\n", 2);
 	else if (x == 7)
-		ft_putstr_fd("Invalid number of arguments for ambient expected 3\n", 2);
+		ft_putstr_fd("Invalid argc for ambient expected 3\n", 2);
 	else if (x == 8)
-		ft_putstr_fd("Invalid number of arguments for camera expected 4\n", 2);
+		ft_putstr_fd("Invalid argc for camera expected 4\n", 2);
+	else if (x == 9)
+		ft_putstr_fd("Invalid argc for triangle expected 5 to 6\n", 2);
+	else if (x == 10)
+		ft_putstr_fd("Invalid material format expexted idnetifier:value\n", 2);
 	exit (1);
 }
 

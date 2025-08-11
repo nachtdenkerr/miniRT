@@ -44,13 +44,23 @@ void print_light(t_light l)
 
 void print_cone(void *data)
 {
-	t_cone *c = (t_cone *)data;
-	if (!c)
-		return ;
-	print_vector("    Apex", c->apex);
-	print_vector("    Axis", c->axis);
-	printf("    Angle: %.2f\n", c->angle);
-	print_color(c->color);
+    t_cone *c = (t_cone *)data;
+    if (!c) return;
+    print_vector("    Apex", c->apex);
+    print_vector("    Axis", c->axis);
+    printf("    Angle: %.2f\n", c->angle);
+    print_color(c->color);
+    switch (c->type)
+    {
+        case REFLECTIVE:
+            printf("MIRROR: %.2f\n", c->mat_value);
+            break;
+        case CHECKER:
+            printf("CHESS: %.2f\n", c->mat_value);
+            break;
+        default:
+            break;
+    }
 }
 
 void print_object(t_object *obj)
@@ -84,33 +94,63 @@ void print_object(t_object *obj)
 
 void print_sphere(void *data)
 {
-	t_sphere *s = (t_sphere *)data;
-	if (!s)
-		return ;
-	print_vector("    Center", s->center);
-	printf("    Radius: %.2f\n", s->radius);
-	print_color(s->color);
+    t_sphere *s = (t_sphere *)data;
+    if (!s) return;
+    print_vector("    Center", s->center);
+    printf("    Radius: %.2f\n", s->radius);
+    print_color(s->color);
+    switch (s->type)
+    {
+        case REFLECTIVE:
+            printf("MIRROR: %.2f\n", s->mat_value);
+            break;
+        case CHECKER:
+            printf("CHESS: %.2f\n", s->mat_value);
+            break;
+        default:
+            break;
+    }
 }
 
 void print_plane(void *data)
 {
-	t_plane *p = (t_plane *)data;
-	if (!p)
-		return ;
-	print_vector("    Point", p->point);
-	print_vector("    Normal", p->normal);
-	print_color(p->color);
+    t_plane *p = (t_plane *)data;
+    if (!p) return;
+    print_vector("    Point", p->point);
+    print_vector("    Normal", p->normal);
+    print_color(p->color);
+    switch (p->type)
+    {
+        case REFLECTIVE:
+            printf("MIRROR: %.2f\n", p->mat_value);
+            break;
+        case CHECKER:
+            printf("CHESS: %.2f\n", p->mat_value);
+            break;
+        default:
+            break;
+    }
 }
 
 void print_cylinder(void *data)
 {
-	t_cylinder *c = (t_cylinder *)data;
-	if (!c)
-		return ;
-	print_vector("    Center", c->center);
-	print_vector("    Axis", c->axis);
-	printf("    Radius: %.2f, Height: %.2f\n", c->radius, c->height);
-	print_color(c->color);
+    t_cylinder *c = (t_cylinder *)data;
+    if (!c) return;
+    print_vector("    Center", c->center);
+    print_vector("    Axis", c->axis);
+    printf("    Radius: %.2f, Height: %.2f\n", c->radius, c->height);
+    print_color(c->color);
+    switch (c->type)
+    {
+        case REFLECTIVE:
+            printf("MIRROR: %.2f\n", c->mat_value);
+            break;
+        case CHECKER:
+            printf("CHESS: %.2f\n", c->mat_value);
+            break;
+        default:
+            break;
+    }
 }
 
 void print_scene(t_scene *scene)
