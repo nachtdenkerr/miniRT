@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/11 10:33:31 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/12 15:35:22 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ t_color	reflect_color(t_ray *ray, t_hit_record *rec, t_scene *scene, int depth)
 t_color	calculate_color(t_ray *ray, t_scene *scene, int depth)
 {
 	t_color			color;
+	t_color			rf_color;
 	t_hit_record	rec;
 
-	if (hit_object(ray, scene, &rec) == true)
+	if (hit_object(ray, scene, &rec) == false)
+		return (starry_sky_color(ray));
+	if (depth <= 0)
+		return (create_color(0, 0, 0));
+	color = color_scale(color_mult(rec.color, scene->ambient.color),
+			scene->ambient.brightness);
+	color = combine_lighting(color, scene, rec, ray);
+	if (rec.mat == REFLECTIVE && depth > 0)
 	{
-		if (depth <= 0)
-			return (create_color(0, 0, 0));
-		if (rec.mat == REFLECTIVE && depth > 0)
-			return (reflect_color(ray, &rec, scene, depth -1));
-		else
-			color = rec.color;
-		color = color_scale(color_mult(rec.color, scene->ambient.color),
-				scene->ambient.brightness);
-		color = combine_lighting(color, scene, rec, ray);
+		rf_color = reflect_color(ray, &rec, scene, depth -1);
+		color = color_add(color_scale(color, 1.0 - rec.mat_val),
+				color_scale(rf_color, rec.mat_val));
 	}
-	else
-		color = starry_sky_color(ray);
 	return (color_clamp(color));
 }
 
