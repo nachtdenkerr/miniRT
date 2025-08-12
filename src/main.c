@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:10:17 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/11 10:49:16 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/12 14:29:59 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_minirt	*init_minirt(t_scene *scene)
 int	main(int argc, char **argv)
 {
 	t_scene		scene;
-	//t_minirt	*mrt;
+	t_minirt	*mrt;
 
 	(void)argv;
 	if (argc != 2)

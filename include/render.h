@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/11 09:45:20 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:32:56 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	init_ray(t_ray *ray, t_scene *scene, int i, int j);
 
 // texture mapping functions
 t_color	starry_sky_color(t_ray *ray);
-void	checker_texture_init(t_texture *checker, double width, double height);
+void    checker_texture_init(t_texture *checker, double width, double height,
+        double scale_val);
 t_color	checker_texture(t_texture checker, double u, double v);
 void	get_sphere_uv(t_hit_record *rec, t_point sp_center, double radius);
 void	get_plane_uv(t_hit_record *rec, t_point point);
