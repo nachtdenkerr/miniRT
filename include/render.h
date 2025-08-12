@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/12 15:32:56 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:28:51 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,22 @@ typedef struct s_cone_var
 	double		delta;
 	double		s;
 }				t_cone_var;
+
+typedef struct s_triangle_var
+{
+	t_point		e1;
+	t_vector	e2;
+	t_vector	ray_cross_e2;
+	t_vector	s_cross_e1;
+	t_vector	s;
+	t_vector	normal;
+	t_vector	intersection_point;
+	double		determinant;
+	double		inverse_determinant;
+	double		u;
+	double		v;
+	double		t;
+}				t_triangle_var;
 
 void	update_hit_record(t_hit_record *rec, t_point point, t_vector normal,
 			t_color color);
