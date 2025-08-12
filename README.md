@@ -1,6 +1,6 @@
 # 🖼️ MiniRT
 
-MiniRT is a minimal ray tracer written in C using the miniLibX graphics library.  
+MiniRT is a minimal ray tracer written in C using the MLX42 graphics library.  
 This project is part of the 42 curriculum and serves as an introduction to computer graphics, ray-object intersection, light physics, and rendering pipelines.
 
 # 🎯 Project Goal
@@ -22,7 +22,7 @@ Correct intersection calculation<br/>
 Ambient and diffuse lighting<br/>
 Hard shadows<br/>
 Basic transformations: translation & rotation<br/>
-Real-time display with MiniLibX<br/>
+Real-time display with MLX42<br/>
 Clean exit on ESC key or window close<br/>
 
 ## ✨ Bonus (Optional)
