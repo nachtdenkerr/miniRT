@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/11 09:45:20 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:28:51 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,22 @@ typedef struct s_cone_var
 	double		s;
 }				t_cone_var;
 
+typedef struct s_triangle_var
+{
+	t_point		e1;
+	t_vector	e2;
+	t_vector	ray_cross_e2;
+	t_vector	s_cross_e1;
+	t_vector	s;
+	t_vector	normal;
+	t_vector	intersection_point;
+	double		determinant;
+	double		inverse_determinant;
+	double		u;
+	double		v;
+	double		t;
+}				t_triangle_var;
+
 void	update_hit_record(t_hit_record *rec, t_point point, t_vector normal,
 			t_color color);
 double	*solve_t_values(t_cylinder *cyl, t_ray *ray);
@@ -65,7 +81,8 @@ void	init_ray(t_ray *ray, t_scene *scene, int i, int j);
 
 // texture mapping functions
 t_color	starry_sky_color(t_ray *ray);
-void	checker_texture_init(t_texture *checker, double width, double height);
+void    checker_texture_init(t_texture *checker, double width, double height,
+        double scale_val);
 t_color	checker_texture(t_texture checker, double u, double v);
 void	get_sphere_uv(t_hit_record *rec, t_point sp_center, double radius);
 void	get_plane_uv(t_hit_record *rec, t_point point);

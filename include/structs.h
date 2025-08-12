@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:07:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/11 11:16:40 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:36:03 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_hit_record
 	double		v;
 	double		t;
 	t_mat		mat; // Material type for the object
+	double		mat_val;
 }	t_hit_record;
 
 typedef struct s_sphere
@@ -101,7 +102,7 @@ typedef struct s_sphere
 	t_point			center;
 	double			radius;
 	t_color			color;
-	t_mat			type;
+	t_mat			mat;
 	double			mat_value;
 }				t_sphere;
 
@@ -110,7 +111,7 @@ typedef struct s_plane
 	t_point			point;
 	t_vector		normal;
 	t_color			color;
-	t_mat			type;
+	t_mat			mat;
 	double			mat_value;
 }				t_plane;
 
@@ -121,7 +122,7 @@ typedef struct s_cylinder
 	double			radius;
 	double			height;
 	t_color			color;
-	t_mat			type;
+	t_mat			mat;
 	double			mat_value;
 }				t_cylinder;
 
@@ -132,7 +133,7 @@ typedef struct s_cone
 	t_vector		axis;
 	double			angle;
 	t_color			color;
-	t_mat			type;
+	t_mat			mat;
 	double			mat_value;
 }				t_cone;
 
@@ -142,7 +143,7 @@ typedef struct s_triangle
 	t_point			v2;
 	t_point			v3;
 	t_color			color;
-	t_mat			type;
+	t_mat			mat;
 	double			mat_value;
 }				t_triangle;
 
@@ -150,7 +151,7 @@ typedef struct s_object
 {
 	t_obj_type	type;
 	void		*data;
-	bool		(*hit)(void *, t_ray *, t_hit_record *, t_mat mat);
+	bool		(*hit)(void *, t_ray *, t_hit_record *);
 	t_mat		mat;
 }	t_object;
 

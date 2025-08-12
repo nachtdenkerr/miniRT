@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   checker_board.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:05:06 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/09 14:11:42 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/12 15:32:31 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	checker_texture_init(t_texture *checker, double width, double height)
+void    checker_texture_init(t_texture *checker, double width, double height,
+        double scale_val)
 {
-	checker->color1 = create_color(255, 255, 255);
-	checker->color2 = create_color(0, 100, 0);
-	checker->width = width;
-	checker->height = height;
+    checker->color1 = create_color(255, 255, 255);
+    checker->color2 = create_color(0, 100, 0);
+    checker->width = width / scale_val;
+    checker->height = height / scale_val;
 }
 
 // Create a checkerboard texture based on the UV coordinates

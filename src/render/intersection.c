@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/11 10:57:07 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:28:44 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,53 @@ bool	hit_cone(t_cone *cone, t_ray *ray, t_hit_record *rec)
 	return (false);
 }
 
+//for our triangle we use the Möller–Trumbore intersection algorithm
+//
+//which is defiend like that:
+// 		O + tD = v0 + u * e1 + v * e2
+//	where:
+//		O = ray origin;
+//		D = ray direction;
+//		v1, v2, v3 = trianlge corner points;
+//		e1 = v2 - v1; basically dir_vec of one ofthe edges of the triangle;
+//		e2 = v3 - v1; basically dir_vec of one ofthe edges of the triangle;
+//		u,v = barycentric coordinates (0 <= u <= 1, 0 <= v <= 1, u+v <= 1);
+//		t = distance along the ray to the intersection (what we wanna solve for)
+bool	init_triangle_var_and_check_if_parallel(t_triangle_var *var, t_triangle *tri, t_ray *ray)
+{
+	var->e1 = vec_sub(tri->v2, tri->v1);
+	var->e2 = vec_sub(tri->v3, tri->v1);
+	var->ray_cross_e2 = vec_cross(ray->dir, var->e2);
+	var->determinant = vec_dot(var->e1, var->ray_cross_e2);
+	if (fabs(var->determinant) < EPSILON)
+		return (false); //is very close to parallel
+	var->inverse_determinant = 1.0 / var->determinant;
+	return (true);
+}
 bool	hit_triangle(t_triangle *tri, t_ray *ray, t_hit_record *rec)
 {
-	(void)tri;
-	(void)ray;
-	(void)rec;
-	return (false);
+	t_triangle_var	var;
+
+	if (!init_triangle_var_and_check_if_parallel(&var, tri, ray))
+		return (false);
+	var.s = vec_sub(ray->origin, tri->v1);
+	var.u = vec_dot(var.s, var.ray_cross_e2) * var.inverse_determinant;
+	if ((var.u < 0.0 && fabs(var.u) > EPSILON)
+			|| (var.u > 1.0 && fabs(var.u - 1) > EPSILON))
+		return (false);
+	var.s_cross_e1 = vec_cross(var.s, var.e1);
+	var.v = vec_dot(ray->dir, var.s_cross_e1) * var.inverse_determinant;
+	if ((var.v < 0.0 && fabs(var.v) > EPSILON)
+		|| ((var.u + var.v) > 1.0 && fabs(var.u + var.v - 1) > EPSILON))
+		return (false);
+	var.t = vec_dot(var.e2, var.s_cross_e1) * var.inverse_determinant;
+	if (var.t <= EPSILON)
+		return (false);
+	var.intersection_point = point_at(ray, var.t);
+	var.normal = vec_normalize(vec_cross(var.e1, var.e2));
+	if (vec_dot(var.normal, ray->dir) > 0.0)
+		var.normal = vec_scale(var.normal, -1.0);
+	rec->t = var.t;
+	update_hit_record(rec, var.intersection_point, var.normal, tri->color);
+	return (true);
 }

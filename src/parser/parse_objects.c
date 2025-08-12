@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:42 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/11 11:20:01 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:31:10 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	parse_sphere(char **tokens, t_scene *scene)
 	sp->color = parse_color(tokens[3], tokens, scene);
 	sp->mat_value = -1.0;
 	if (tokens[4])
-		sp->type = get_material(tokens[4], &sp->mat_value, tokens, scene);
+		sp->mat = get_material(tokens[4], &sp->mat_value, tokens, scene);
 	else
-		sp->type = NORMAL;
+		sp->mat = NORMAL;
 }
 
 void	parse_plane(char **tokens, t_scene *scene)
@@ -103,9 +103,9 @@ void	parse_plane(char **tokens, t_scene *scene)
 	pl->color = parse_color(tokens[3], tokens, scene);
 	pl->mat_value = -1.0;
 	if (tokens[4])
-		pl->type = get_material(tokens[4], &pl->mat_value, tokens, scene);
+		pl->mat = get_material(tokens[4], &pl->mat_value, tokens, scene);
 	else
-		pl->type = NORMAL;
+		pl->mat = NORMAL;
 }
 
 void	parse_cylinder(char **tokens, t_scene *scene, int flag)
@@ -137,9 +137,9 @@ void	parse_cylinder(char **tokens, t_scene *scene, int flag)
 	cy->color = parse_color(tokens[5], tokens, scene);
 	cy->mat_value = -1.0;
 	if (tokens[6])
-		cy->type = get_material(tokens[6], &cy->mat_value, tokens, scene);
+		cy->mat = get_material(tokens[6], &cy->mat_value, tokens, scene);
 	else
-		cy->type = NORMAL;
+		cy->mat = NORMAL;
 }
 
 void	parse_cone(char **tokens, t_scene *scene)
@@ -169,9 +169,9 @@ void	parse_cone(char **tokens, t_scene *scene)
 	co->color = parse_color(tokens[4], tokens, scene);
 	co->mat_value = -1.0;
 	if (tokens[5])
-		co->type = get_material(tokens[5], &co->mat_value, tokens, scene);
+		co->mat = get_material(tokens[5], &co->mat_value, tokens, scene);
 	else
-		co->type = NORMAL;
+		co->mat = NORMAL;
 }
 
 void	parse_triangle(char **tokens, t_scene *scene)
@@ -195,7 +195,7 @@ void	parse_triangle(char **tokens, t_scene *scene)
 	tr->color = parse_color(tokens[4], tokens, scene);
 	tr->mat_value = -1.0;
 	if (tokens[5])
-		tr->type = get_material(tokens[5], &tr->mat_value, tokens, scene);
+		tr->mat = get_material(tokens[5], &tr->mat_value, tokens, scene);
 	else
-		tr->type = NORMAL;
+		tr->mat = NORMAL;
 }
