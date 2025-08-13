@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/12 16:28:51 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/13 15:44:51 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ bool	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_hit_record *rec);
 bool	hit_cone(t_cone *cone, t_ray *ray, t_hit_record *rec);
 bool	hit_triangle(t_triangle *tri, t_ray *ray, t_hit_record *rec);
 
+//hit wrapper
 bool	hit_sphere_wrapper(void *data, t_ray *ray, t_hit_record *rec);
 bool	hit_cylinder_wrapper(void *data, t_ray *ray, t_hit_record *rec);
 bool	hit_plane_wrapper(void *data, t_ray *ray, t_hit_record *rec);
@@ -81,8 +82,8 @@ void	init_ray(t_ray *ray, t_scene *scene, int i, int j);
 
 // texture mapping functions
 t_color	starry_sky_color(t_ray *ray);
-void    checker_texture_init(t_texture *checker, double width, double height,
-        double scale_val);
+void	checker_texture_init(t_texture *checker, double width, double height,
+			double scale_val);
 t_color	checker_texture(t_texture checker, double u, double v);
 void	get_sphere_uv(t_hit_record *rec, t_point sp_center, double radius);
 void	get_plane_uv(t_hit_record *rec, t_point point);
@@ -93,7 +94,7 @@ t_color	specular_lighting(t_color color, t_ray *ray,
 			t_light *light, t_hit_record *rec);
 t_color	diffuse_lighting(t_color color, t_light *light, t_hit_record *rec);
 t_color	combine_lighting(t_color color, t_scene *scene,
-t_hit_record rec, t_ray *ray);
+			t_hit_record rec, t_ray *ray);
 t_color	starry_sky_color(t_ray *ray);
 
 t_color	calculate_color(t_ray *ray, t_scene *scene, int depth);
