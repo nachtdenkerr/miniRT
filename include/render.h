@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/08/13 18:04:36 by thudinh          ###   ########.fr       */
+/*   Created: 2025/08/13 18:05:40 by thudinh           #+#    #+#             */
+/*   Updated: 2025/08/13 18:05:42 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef RENDER_H
 # define RENDER_H
