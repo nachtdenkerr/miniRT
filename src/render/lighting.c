@@ -6,7 +6,7 @@
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 17:17:25 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/11 10:34:54 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/13 17:12:03 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_color	combine_lighting(t_color color, t_scene *scene,
 	t_light		*light;
 
 	light_index = -1;
+	(void) ray;
 	while (++light_index < scene->light_count)
 	{
 		light = &scene->lights[light_index];

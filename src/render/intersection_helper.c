@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection_helper.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 09:37:40 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/09 13:08:51 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/13 17:15:02 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	update_hit_record(t_hit_record *rec, t_point point, t_vector normal,
 }
 
 // Solve quadratic equation for cylinder intersection
-double	*solve_t_values(t_cylinder *cyl, t_ray *ray)
+double	*solve_t_values(t_cylinder *cyl, t_ray *ray, t_vector axis)
 {
 	double		a;
 	double		h;
@@ -30,10 +30,10 @@ double	*solve_t_values(t_cylinder *cyl, t_ray *ray)
 	double		*result;
 
 	oc = vec_sub(ray->origin, cyl->center);
-	a = vec_dot(ray->dir, ray->dir) - pow(vec_dot(ray->dir, cyl->axis), 2);
+	a = vec_dot(ray->dir, ray->dir) - pow(vec_dot(ray->dir, axis), 2);
 	h = vec_dot(ray->dir, oc)
-		- vec_dot(ray->dir, cyl->axis) * vec_dot(oc, cyl->axis);
-	discriminant = h * h - a * (vec_dot(oc, oc) - pow(vec_dot(oc, cyl->axis), 2)
+		- vec_dot(ray->dir, axis) * vec_dot(oc, axis);
+	discriminant = h * h - a * (vec_dot(oc, oc) - pow(vec_dot(oc, axis), 2)
 			- pow(cyl->radius, 2));
 	if (discriminant < 0.0)
 		return (NULL);
@@ -55,14 +55,16 @@ bool	check_t_value(t_cylinder *cyl, t_ray *ray,
 	t_point		point;
 	t_vector	vec_cyl_center_point;
 	t_vector	vec_scaled_cyl_axis;
+	t_vector	axis;
 
 	point = point_at(ray, t_value);
+	axis = cyl->axis;
 	vec_cyl_center_point = vec_sub(point, cyl->center);
-	axis_projection = vec_dot(vec_cyl_center_point, cyl->axis);
+	axis_projection = vec_dot(vec_cyl_center_point, axis);
 	if (fabs(axis_projection) > cyl->height / 2)
 		return (false);
 	rec->t = t_value;
-	vec_scaled_cyl_axis = vec_scale(cyl->axis, axis_projection);
+	vec_scaled_cyl_axis = vec_scale(axis, axis_projection);
 	update_hit_record(rec, point,
 		vec_normalize(vec_sub(vec_cyl_center_point, vec_scaled_cyl_axis)),
 		cyl->color);
