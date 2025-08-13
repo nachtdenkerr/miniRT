@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/13 18:02:24 by thudinh          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/08/13 18:04:36 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef RENDER_H
 # define RENDER_H
@@ -69,6 +70,7 @@ bool	hit_cylinder(t_cylinder *cyl, t_ray *ray, t_hit_record *rec);
 bool	hit_cone(t_cone *cone, t_ray *ray, t_hit_record *rec);
 bool	hit_triangle(t_triangle *tri, t_ray *ray, t_hit_record *rec);
 
+//hit wrapper
 bool	hit_sphere_wrapper(void *data, t_ray *ray, t_hit_record *rec);
 bool	hit_cylinder_wrapper(void *data, t_ray *ray, t_hit_record *rec);
 bool	hit_plane_wrapper(void *data, t_ray *ray, t_hit_record *rec);
@@ -81,8 +83,8 @@ void	init_ray(t_ray *ray, t_scene *scene, int i, int j);
 
 // texture mapping functions
 t_color	starry_sky_color(t_ray *ray);
-void    checker_texture_init(t_texture *checker, double width, double height,
-        double scale_val);
+void	checker_texture_init(t_texture *checker, double width, double height,
+			double scale_val);
 t_color	checker_texture(t_texture checker, double u, double v);
 void	get_sphere_uv(t_hit_record *rec, t_point sp_center, double radius);
 void	get_plane_uv(t_hit_record *rec, t_point point);
@@ -93,7 +95,7 @@ t_color	specular_lighting(t_color color, t_ray *ray,
 			t_light *light, t_hit_record *rec);
 t_color	diffuse_lighting(t_color color, t_light *light, t_hit_record *rec);
 t_color	combine_lighting(t_color color, t_scene *scene,
-t_hit_record rec, t_ray *ray);
+			t_hit_record rec, t_ray *ray);
 t_color	starry_sky_color(t_ray *ray);
 
 t_color	calculate_color(t_ray *ray, t_scene *scene, int depth);
@@ -103,5 +105,7 @@ void	minirt(t_minirt *mrt);
 bool	calculate_cone(t_cone_var *var, double *t);
 void	init_cone_var(t_cone_var *var, t_cone *cone, t_ray *ray);
 void	ft_swap(double *x, double *y);
+bool	init_triangle_var_and_check_if_parallel(t_triangle_var *var,
+			t_triangle *tri, t_ray *ray);
 
 #endif

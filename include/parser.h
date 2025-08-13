@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:38:44 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/11 09:46:11 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/13 15:43:33 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,14 @@ int			check_if_unit_vector(t_vector vec);
 void		validate_element_counts(t_scene *scene);
 int			ft_atoi_color(char *str, int *flag);
 double		ft_atof(char *str, int *flag, int sign, int i);
+
+//parse_utils_two.c
+int			is_not_valid_format(char *str);
+void		invalid_mat_val_exit(char *str, char **tokens,
+				char **arr, t_scene *scene);
+t_mat		get_material(char *str, double *value, char **tokens,
+				t_scene *scene);
+void		init_cy(t_cylinder *cy, char **tokens, t_scene *scene, int flag);
+void		init_co(t_cone *co, char **tokens, t_scene *scene, int flag);
+
 #endif

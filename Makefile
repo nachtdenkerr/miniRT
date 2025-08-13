@@ -10,7 +10,7 @@ OBJ_DIR 	:=	obj
 
 CC 		:=	cc 
 CFLAGS	:= -Wall -Wextra -Werror
-LDFLAGS = -lm
+
 
 LIBFT_DIR	:= $(LIB_DIR)/libft
 LIBFT_A		:= $(LIBFT_DIR)/libft.a
@@ -32,6 +32,7 @@ SRCS	:= 	\
 			$(PARS_DIR)/parse_objects.c\
 			$(PARS_DIR)/parse_scene.c\
 			$(PARS_DIR)/parse_utils.c\
+			$(PARS_DIR)/parse_utils_two.c\
 			$(RENDER_DIR)/checker_board.c\
 			$(RENDER_DIR)/cone_triangle_helper.c\
 			$(RENDER_DIR)/intersection.c\
@@ -69,6 +70,7 @@ $(LIBFT_A):
 	@make -C $(LIBFT_DIR) > /dev/null
 
 $(MLX42_A):
+	@git clone --quiet https://github.com/codam-coding-college/MLX42.git $(MLX42_DIR)
 	@cmake $(MLX42_DIR) -B $(MLX42_DIR)/build > /dev/null
 	@cmake --build $(MLX42_DIR)/build -j4 > /dev/null
 
@@ -80,18 +82,20 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(NAME): $(LIBFT_A) $(MLX42_A) $(PRINTF_A) $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME) $(LDFLAGS)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 	@echo "${Green}miniRT ${Black}Build successful!"
 
 clean:
 	@make -C $(LIBFT_DIR) clean > /dev/null
 	@rm -rf $(OBJ_DIR)
 	@rm -rf	$(MLX42_DIR)/build
+	@rm -rf $(MLX42_DIR)
 	@echo "${Green}CLEAN ${Black}successful!"
 
 fclean:
 	@make -C $(LIBFT_DIR) fclean > /dev/null
 	@rm -rf	$(MLX42_DIR)/build
+	@rm -rf $(MLX42_DIR)
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
 	@echo "${Green}FCLEAN ${Black}successful!"
