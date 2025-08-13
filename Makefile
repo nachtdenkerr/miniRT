@@ -23,7 +23,6 @@ IFLAGS	:= -Iinclude -I$(LIBFT_DIR)/include -I$(MLX42_DIR)/include/MLX42
 
 SRCS	:= 	\
 			src/main.c\
-			src/print.c\
 			$(PARS_DIR)/error.c\
 			$(PARS_DIR)/error_two.c\
 			$(PARS_DIR)/gnl_helper.c\

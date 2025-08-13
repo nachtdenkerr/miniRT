@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:08:16 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/12 15:35:22 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/13 16:29:22 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_color	calculate_color(t_ray *ray, t_scene *scene, int depth)
 	t_hit_record	rec;
 
 	if (hit_object(ray, scene, &rec) == false)
-		return (starry_sky_color(ray));
+		return (create_color(0, 0, 0));
 	if (depth <= 0)
 		return (create_color(0, 0, 0));
 	color = color_scale(color_mult(rec.color, scene->ambient.color),

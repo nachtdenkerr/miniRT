@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/13 15:56:16 by thudinh          ###   ########.fr       */
+/*   Created: 2025/08/13 18:05:40 by thudinh           #+#    #+#             */
+/*   Updated: 2025/08/13 18:05:42 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_triangle_var
 
 void	update_hit_record(t_hit_record *rec, t_point point, t_vector normal,
 			t_color color);
-double	*solve_t_values(t_cylinder *cyl, t_ray *ray);
+double	*solve_t_values(t_cylinder *cyl, t_ray *ray, t_vector axis);
 bool	check_t_value(t_cylinder *cyl, t_ray *ray,
 			t_hit_record *rec, double t_value);
 
