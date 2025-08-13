@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone_triangle_helper.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 12:00:15 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/10 12:01:50 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/13 15:54:00 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,36 @@
 
 void	ft_swap(double *x, double *y)
 {
-	double temp;
+	double	temp;
 
 	temp = *x;
 	*x = *y;
 	*y = temp;
+}
+
+//for our triangle we use the Möller–Trumbore intersection algorithm
+//
+//which is defiend like that:
+// 		O + tD = v0 + u * e1 + v * e2
+//	where:
+//		O = ray origin;
+//		D = ray direction;
+//		v1, v2, v3 = trianlge corner points;
+//		e1 = v2 - v1; basically dir_vec of one ofthe edges of the triangle;
+//		e2 = v3 - v1; basically dir_vec of one ofthe edges of the triangle;
+//		u,v = barycentric coordinates (0 <= u <= 1, 0 <= v <= 1, u+v <= 1);
+//		t = distance along the ray to the intersection (what we wanna solve for)
+bool	init_triangle_var_and_check_if_parallel(t_triangle_var *var,
+	t_triangle *tri, t_ray *ray)
+{
+	var->e1 = vec_sub(tri->v2, tri->v1);
+	var->e2 = vec_sub(tri->v3, tri->v1);
+	var->ray_cross_e2 = vec_cross(ray->dir, var->e2);
+	var->determinant = vec_dot(var->e1, var->ray_cross_e2);
+	if (fabs(var->determinant) < EPSILON)
+		return (false);
+	var->inverse_determinant = 1.0 / var->determinant;
+	return (true);
 }
 
 void	init_cone_var(t_cone_var *var, t_cone *cone, t_ray *ray)

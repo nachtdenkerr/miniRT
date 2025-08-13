@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 20:36:24 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/11 10:31:31 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/13 15:59:45 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,12 @@ void	malloc_failure_obj_creation_exit(t_scene *scene, char **tokens)
 	free_arr(tokens);
 	cleanup_scene(scene);
 	exit (1);
+}
+
+u_int32_t	combine_color(t_color a)
+{
+	u_int32_t	c;
+
+	c = (a.r << 24) | (a.g << 16) | (a.b << 8) | 0xFF;
+	return (c);
 }

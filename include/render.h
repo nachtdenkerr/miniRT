@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:46:15 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/13 15:44:51 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/13 15:56:16 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,7 @@ void	minirt(t_minirt *mrt);
 bool	calculate_cone(t_cone_var *var, double *t);
 void	init_cone_var(t_cone_var *var, t_cone *cone, t_ray *ray);
 void	ft_swap(double *x, double *y);
+bool	init_triangle_var_and_check_if_parallel(t_triangle_var *var,
+			t_triangle *tri, t_ray *ray);
 
 #endif

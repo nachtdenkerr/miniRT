@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 14:14:13 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/09 14:14:16 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/13 15:59:35 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,5 @@ t_color	color_mult(t_color a, t_color b)
 	c.r = (int)round((a.r * b.r) / 255);
 	c.g = (int)round((a.g * b.g) / 255);
 	c.b = (int)round((a.b * b.b) / 255);
-	return (c);
-}
-
-u_int32_t	combine_color(t_color a)
-{
-	u_int32_t	c;
-
-	c = (a.r << 24) | (a.g << 16) | (a.b << 8) | 0xFF;
 	return (c);
 }
