@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: thudinh <thudinh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:19:43 by thudinh           #+#    #+#             */
-/*   Updated: 2025/08/12 16:28:44 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/13 15:56:43 by thudinh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ bool	hit_cone(t_cone *cone, t_ray *ray, t_hit_record *rec)
 	{
 		var.p = point_at(ray, t);
 		var.u = vec_sub(var.p, cone->apex);
-		var.normal = vec_sub(vec_scale(var.v, vec_dot(var.u, var.v)), vec_scale(var.u, var.k));
+		var.normal = vec_sub(vec_scale(var.v, vec_dot(var.u, var.v)),
+				vec_scale(var.u, var.k));
 		var.normal = vec_normalize(var.normal);
 		if (vec_dot(var.normal, ray->dir) > 0.0)
 			var.normal = vec_scale(var.normal, -1.0);
@@ -102,29 +103,6 @@ bool	hit_cone(t_cone *cone, t_ray *ray, t_hit_record *rec)
 	return (false);
 }
 
-//for our triangle we use the Möller–Trumbore intersection algorithm
-//
-//which is defiend like that:
-// 		O + tD = v0 + u * e1 + v * e2
-//	where:
-//		O = ray origin;
-//		D = ray direction;
-//		v1, v2, v3 = trianlge corner points;
-//		e1 = v2 - v1; basically dir_vec of one ofthe edges of the triangle;
-//		e2 = v3 - v1; basically dir_vec of one ofthe edges of the triangle;
-//		u,v = barycentric coordinates (0 <= u <= 1, 0 <= v <= 1, u+v <= 1);
-//		t = distance along the ray to the intersection (what we wanna solve for)
-bool	init_triangle_var_and_check_if_parallel(t_triangle_var *var, t_triangle *tri, t_ray *ray)
-{
-	var->e1 = vec_sub(tri->v2, tri->v1);
-	var->e2 = vec_sub(tri->v3, tri->v1);
-	var->ray_cross_e2 = vec_cross(ray->dir, var->e2);
-	var->determinant = vec_dot(var->e1, var->ray_cross_e2);
-	if (fabs(var->determinant) < EPSILON)
-		return (false); //is very close to parallel
-	var->inverse_determinant = 1.0 / var->determinant;
-	return (true);
-}
 bool	hit_triangle(t_triangle *tri, t_ray *ray, t_hit_record *rec)
 {
 	t_triangle_var	var;
@@ -134,7 +112,7 @@ bool	hit_triangle(t_triangle *tri, t_ray *ray, t_hit_record *rec)
 	var.s = vec_sub(ray->origin, tri->v1);
 	var.u = vec_dot(var.s, var.ray_cross_e2) * var.inverse_determinant;
 	if ((var.u < 0.0 && fabs(var.u) > EPSILON)
-			|| (var.u > 1.0 && fabs(var.u - 1) > EPSILON))
+		|| (var.u > 1.0 && fabs(var.u - 1) > EPSILON))
 		return (false);
 	var.s_cross_e1 = vec_cross(var.s, var.e1);
 	var.v = vec_dot(ray->dir, var.s_cross_e1) * var.inverse_determinant;
@@ -151,4 +129,35 @@ bool	hit_triangle(t_triangle *tri, t_ray *ray, t_hit_record *rec)
 	rec->t = var.t;
 	update_hit_record(rec, var.intersection_point, var.normal, tri->color);
 	return (true);
+}
+
+// Loop through all objects in the scene and check if the ray hits any of them
+// If it does, update the hit record with the closest hit
+// Return true if any object was hit, false otherwise
+bool	hit_object(t_ray *ray, t_scene *scene, t_hit_record *rec)
+{
+	int				i;
+	bool			hit;
+	double			closest_t;
+	t_object		*obj;
+	t_hit_record	tmp_rec;
+
+	i = 0;
+	hit = false;
+	closest_t = INFINITY;
+	while (i < scene->obj_capacity)
+	{
+		obj = &scene->objects[i];
+		if (obj->hit(obj->data, ray, &tmp_rec))
+		{
+			if (tmp_rec.t > 0 && tmp_rec.t < closest_t)
+			{
+				closest_t = tmp_rec.t;
+				*rec = tmp_rec;
+				hit = true;
+			}
+		}
+		i++;
+	}
+	return (hit);
 }
