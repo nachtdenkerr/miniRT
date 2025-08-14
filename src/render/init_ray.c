@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thudinh <thudinh@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 12:42:09 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/08/09 13:06:43 by thudinh          ###   ########.fr       */
+/*   Updated: 2025/08/14 10:07:48 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,4 @@ void	init_ray(t_ray *ray, t_scene *scene, int i, int j)
 {
 	ray->dir = compute_ray_direction(i, j, scene);
 	ray->origin = scene->camera.position;
-	if ((i == WIDTH / 2 && j == HEIGHT / 2) || (i == 0 && j == 0) || (i == WIDTH
-			- 1 && j == HEIGHT - 1) || (i == 0 && j == HEIGHT - 1)
-		|| (i == WIDTH - 1 && j == 0))
-	{
-		printf("Pixel (%d,%d): dir = (%f, %f, %f)\n", i, j, ray->dir.x,
-			ray->dir.y, ray->dir.z);
-	}
-	if (i == 400 && j == 0)
-		printf("UP (%d,%d): dir = (%f, %f, %f)\n", i, j, ray->dir.x,
-			ray->dir.y, ray->dir.z);
-	if (i == 799 && j == 300)
-		printf("RIGHT (%d,%d): dir = (%f, %f, %f)\n", i, j, ray->dir.x,
-			ray->dir.y, ray->dir.z);
 }
