@@ -6,7 +6,7 @@
 /*   By: jmutschl <jmutschl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:40:38 by jmutschl          #+#    #+#             */
-/*   Updated: 2025/07/29 20:12:53 by jmutschl         ###   ########.fr       */
+/*   Updated: 2025/08/14 09:30:07 by jmutschl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ char	*get_next_line(int fd)
 	line = NULL;
 	if (fd == -1 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
+	if (buffer[0] != '\0')
+		bytes_read = 1;	
 	while (1)
 	{
 		if (buffer[0] == '\0')
